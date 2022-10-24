@@ -78,9 +78,11 @@ app.post('/emojis', (req, res)=> {
         return emoji.type === emojiToAdd;
     })
 
-    const emojiResult = emojiCounter(emojiArray, emojiToAdd)
+    let emojiObj = { type: emojiToAdd,
+        count: 1 }
 
-    postsData[findPostIndex].reactionEmoji.push(emojiResult)
+    emojiArray? emojiArray.count++ : (postsData[findPostIndex].reactionEmoji.push(emojiObj))
+ 
     res.send(postsData);
 });
 
