@@ -35,6 +35,25 @@ emojiBtn.addEventListener('click', e => {
     document.querySelector('ul').style.display = 'none';
 })
 
+// when one emoji selected 
+document.querySelector('.emoji > ul').addEventListener('click', e => {
+    const emojiId = e.target.id; // for postId
+    console.log(emojiId);
+
+    // add to database
+    fetch('http://localhost:3000/emojis', {
+        method: 'PATCH',
+        "postId": emojiId
+        // "emojiToAdd": 
+    })
+
+
+        // .then(resp => resp.json())
+        // .then(() => {
+        //     "postId": emojiId
+        // })
+})
+
 //Fetches all posts from the URL
 function getPosts () {
     fetch('http://localhost:3000')
