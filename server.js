@@ -17,13 +17,27 @@ const { uniqueId, getDate } = require('./functions')
 //working so far
 app.get('/', (req, res)=> {
     console.log('/')
-    res.send(postsData)
+    res.send(postsData[postsData]);
+});
+
+app.get('/:id', (req, res)=> {
+
+
+    console.log(parseInt(req.params.id));
+    const postIdSearch = postsData.findIndex(post => {
+        return post.postId === parseInt(req.params.id);
+    })
+
+    console.log(postIdSearch);
+
+    //if(!postIdSearch) return res.status(404).send('this post does not exist')
+    res.send(postsData[postIdSearch])
 });
 
 
 //Users should be able to anonymously post journal entries. (3)
 //Working so far with req.body
-app.post('/', (req, res)=> {
+app.post('/post', (req, res)=> {
     
     let postToAdd = req.body;
     postToAdd.postId = uniqueId();
@@ -53,7 +67,7 @@ app.post('/comments', (req, res)=> {
 
 //Users should be able to react to other 
 //peoples’ entries with a choice of 3 emojis. (7)
-app.post('/emoji', (req, res)=> {
+app.post('/emojis', (req, res)=> {
 
     let postId = req.body.postId;
     let emojiToAdd = req.body.emojiToAdd;
@@ -65,6 +79,45 @@ app.post('/emoji', (req, res)=> {
     res.send(postsData);
 });
 
+//user can update post
+
+
+//user can update comment
+
+
+//user can update or delete their post
+app.delete('/post', (req, res)=> {
+    
+    let postId = req.body.postId;
+    const findPostIndex = postsData.findIndex((post)=> {
+        return post.postId === postId;
+    });
+
+    const removePost = postsData.splice(findPostIndex, 1);
+    res.send(postsData);
+});
+
+//user can update or delete their comment
+app.delete('/comments', (req, res)=> {
+
+    let commentToDelete = req.body
+    console.log(commentToDelete);
+    const findPostIndex = postsData.findIndex((post)=> {
+        return post.postId === commentToDelete.postId;
+    });
+
+    console.log(findPostIndex);
+
+    const findCommentIndex = postsData[findPostIndex].comments.findIndex((comment)=> {
+        return comment.commentId === commentToDelete.commentId;
+    });
+
+    console.log(findCommentIndex);
+    const removeComment = postsData[findPostIndex].comments.splice(findCommentIndex , 1);
+    console.log(removeComment);
+
+    res.send(postsData);
+});
 
 app.listen(port, ()=> {
     console.log(`listening on port ${port}`)
