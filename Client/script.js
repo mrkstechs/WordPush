@@ -1,20 +1,28 @@
 const postSection = document.querySelector('#allPosts');
 const toSendPost = document.querySelector('#forumPostSection');
 
-toSendPost.addEventListener('submit', change);
-
-function change(e){
+// when comment button (in postSection) is clicked, add new post
+toSendPost.addEventListener('submit',  e => {
     e.preventDefault();
 
     const temp = document.createElement('p');
     const txt = document.getElementById('commentText').value;
-    if(txt.length > 3) toSendPost.append('Must have less than 300 characters');
+    if(txt.length > 300) toSendPost.append('Must have less than 300 characters');
     else {
-        toSendPost.append('');
         temp.textContent = document.getElementById('commentText').value;
+        const markup = `
+        <div class="post">
+            <button class="emoji">Emoji react</button>
+            <h3>Example post title</h3>
+            <p>${temp}</p>
+            <input type="text" placeholder="Add a comment...">
+            <input type="submit" value="Send">
+        </div>
+        `;
         postSection.append(temp);
+        postSection.insertAdjacentHTML('beforebegin', markup);
     }
-}
+});
 
 //Fetches all posts from the URL
 function getPosts () {
