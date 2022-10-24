@@ -23,18 +23,19 @@ toSendPost.addEventListener('submit',  e => {
     else {
         const userPost = new CreatePostEntry(userTitle, userBody)
         console.log(userPost)
-        fetch('http://localhost:3000', {method: 'POST', body: JSON.stringify(userPost)})
+        fetch('http://localhost:3000/posts', {method: 'POST', body: JSON.stringify(userPost)})
 
         const markup = `
         <div class="post">
             <button class="emoji">Emoji react</button>
-            <h3>Example post title</h3>
-            <p>${txt.textContent}</p>
+            <h3>${userTitle}</h3>
+            <p>${userBody}</p>
             <input type="text" placeholder="Add a comment...">
             <input type="submit" value="Send">
         </div>
         `;
         postSection.insertAdjacentHTML('beforebegin', markup);
+
     }
 });
 
