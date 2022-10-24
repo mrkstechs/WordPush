@@ -14,11 +14,19 @@ const getDate = () => {
   return currentDate;
 };
 
-const emojiCounter = (num) => {
-  console.log(num)
-  num++;
-  return num;
-}
+const emojiCounter = (emojiArray, emojiToAdd) => {
+
+    if(emojiArray) {
+      emojiArray.count++;
+
+      return emojiArray
+    } else {
+    
+      let emojiObj = { type: emojiToAdd,
+                      count: 1 }
+
+      return emojiObj
+}}
 
 
   module.exports= { uniqueId, getDate, emojiCounter }
