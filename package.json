@@ -1,17 +1,20 @@
 {
   "name": "wordpush",
   "version": "1.0.0",
+
   "description": "Project Week Project at FutureProof by Team Matcha",
   "main": "server.js",
   "scripts": {
     "start": "node server",
     "dev": "nodemon server",
     "test": "jest --wacthAll"
+
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mrkstechs/WordPush.git"
   },
+  "keywords": [],
   "author": "Kelechi Okoli, Young Kim, Cameron Findlay & Anna Huang",
   "license": "MIT",
   "bugs": {
@@ -20,7 +23,9 @@
   "homepage": "https://github.com/mrkstechs/WordPush#readme",
   "dependencies": {
     "cors": "^2.8.5",
-    "express": "^4.18.2"
+
+    "express": "^4.18.2",
+    "moment": "^2.29.4"
   },
   "devDependencies": {
     "nodemon": "^2.0.20"
