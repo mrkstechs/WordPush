@@ -1,5 +1,20 @@
 const postSection = document.querySelector('#allPosts');
+const toSendPost = document.querySelector('#forumPostSection');
 
+toSendPost.addEventListener('submit', change);
+
+function change(e){
+    e.preventDefault();
+
+    const temp = document.createElement('p');
+    const txt = document.getElementById('commentText').value;
+    if(txt.length > 3) toSendPost.append('Must have less than 300 characters');
+    else {
+        toSendPost.append('');
+        temp.textContent = document.getElementById('commentText').value;
+        postSection.append(temp);
+    }
+}
 
 //Fetches all posts from the URL
 function getPosts () {
