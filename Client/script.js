@@ -1,6 +1,6 @@
 const postSection = document.querySelector('#allPosts');
 const toSendPost = document.querySelector('#forumPostSection');
-
+const emojiBtn = document.querySelector('.emoji');
 
 
 // when comment button (in postSection) is clicked, add new post
@@ -21,10 +21,19 @@ toSendPost.addEventListener('submit',  e => {
             <input type="submit" value="Send">
         </div>
         `;
-        console.log(typeof(txt))
         postSection.insertAdjacentHTML('beforebegin', markup);
     }
 });
+
+// when emoji react button is clicked, add emoji 
+let clickOnce = false;
+// note in css, must set list of emojis hidden
+emojiBtn.addEventListener('click', e => {
+    clickOnce = !clickOnce; // reset button boolean each time clicked
+    console.log('emoji display on? '+clickOnce);
+    if(clickOnce) return document.querySelector('ul').style.display = 'block';
+    document.querySelector('ul').style.display = 'none';
+})
 
 //Fetches all posts from the URL
 function getPosts () {
