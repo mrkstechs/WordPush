@@ -11,6 +11,8 @@ const postsData = require('./db/posts.json');
 const commentsData = require('./db/comments.json');
 const userData = require('./db/users.json');
 
+const { uniqueId } = require('./functions')
+
 //Users should be able to view other peoples' entries. (2)
 //working so far
 app.get('/', (req, res)=> {
@@ -22,16 +24,32 @@ app.get('/', (req, res)=> {
 //Users should be able to anonymously post journal entries. (3)
 //Working so far with req.body
 app.post('/', (req, res)=> {
-    postsData.push(req.body);
+    
+    let commentToAdd = req.body;
+    commentToAdd.postId = uniqueId();
+
+    postsData.push(commentToAdd);
+
     res.send(postsData);
 });
 
 //Users should be able to comment on other people’s entries. (5)
 app.post('/comments', (req, res)=> {
 
-    //postsData[req.body.postId].comments.push(req.body.comment);
-    console.log(req.body)
-    console.log(postsData[0].comments.push(req.body))
+    let postId = req.body.postId;
+    let comment = req.body;
+    comment.commentId = uniqueId();
+
+
+    // const findPost = postsData.find((post)=> {
+    //     return post.postId === postId;
+    // })
+
+    const findPostIndex = postsData.findIndex((post)=> {
+        return post.postId === postId;
+    })
+
+    postsData[findPostIndex].comments.push(comment);
 
     res.send(postsData);
 });
