@@ -11,7 +11,7 @@ const postsData = require('./db/posts.json');
 const commentsData = require('./db/comments.json');
 const userData = require('./db/users.json');
 
-const { uniqueId, getDate } = require('./functions');
+const { uniqueId, getDate, emojiCounter } = require('./functions');
 
 //Users should be able to view other peoples' entries. (2)
 //working so far
@@ -24,7 +24,7 @@ app.get('/:id', (req, res)=> {
 
     console.log(parseInt(req.params.id));
     const postIdSearch = postsData.findIndex(post => {
-        return post.postId === parseInt(req.params.id);
+        return post.postId.toString() === req.params.id;
     })
 
     console.log(postIdSearch);
@@ -74,7 +74,23 @@ app.post('/emojis', (req, res)=> {
         return post.postId === postId;
     })
 
-    postsData[findPostIndex].reactionEmoji.push(emojiToAdd)
+    const emojiArray = postsData[findPostIndex].reactionEmoji.find((emoji)=> {
+        return emoji.type === emojiToAdd;
+    })
+
+    console.log(emojiArray);
+
+    if(emojiArray) {
+        emojiArray.count++;
+    } else {
+
+        let emojiObj = { type: emojiToAdd,
+                        count: 1}
+
+        postsData[findPostIndex].reactionEmoji.push(emojiObj)
+    }
+ 
+    //postsData[findPostIndex].reactionEmoji.push(emojiToAdd)
     res.send(postsData);
 });
 

@@ -14,6 +14,11 @@ const getDate = () => {
   return currentDate;
 };
 
+const emojiCounter = (num) => {
+  console.log(num)
+  num++;
+  return num;
+}
 
 
-  module.exports= { uniqueId, getDate }
+  module.exports= { uniqueId, getDate, emojiCounter }
