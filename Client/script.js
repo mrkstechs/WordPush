@@ -35,22 +35,39 @@ toSendPost.addEventListener('submit',  e => {
             <input type="submit" value="Send">
         </div>
         `;
-        postSection.insertAdjacentHTML('beforebegin', markup);
+        document .insertAdjacentHTML('beforebegin', markup);
 
     }
 });
 
 // when emoji react button is clicked, add emoji 
 // note in css, must set list of emojis hidden
+let count = 0;
+let clickOnce = false;
+let prevPostClick = 0;
 emojiBtnArray.forEach(btn => {
-    let clickOnce = false;
-    console.log(btn)
+    btn.setAttribute("id", "post"+count.toString());
+
     btn.addEventListener('click', e => {
+        if(prevPostClick <= 0) prevPostClick = btn.id;
+        else if(prevPostClick.toString() !== e.target.id) {
+            console.log('not same: '+prevPostClick, btn.id);
+            clickOnce = false; // close old emoji react
+            document.getElementById('emoji-list').remove();
+            prevPostClick = btn.id;
+        }
         clickOnce = !clickOnce; // reset button boolean each time clicked
-        console.log('emoji display on? '+clickOnce);
-        if(clickOnce) return document.querySelector('ul').style.display = 'block';
-        return document.querySelector('ul').style.display = 'none';
+        //console.log('emoji display on? '+clickOnce);
+        console.log(btn.id);
+        if(clickOnce) {
+            const markup = `<ul id='emoji-list'>
+                <li id="1">😀</li><li id="2">😥</li><li id="3">😮</li>
+            </ul>`
+            return document.getElementById(btn.id).insertAdjacentHTML("beforeend", markup);
+        }
+        document.getElementById('emoji-list').remove();
     })
+    count++;
 })
 
 // emojiBtn.addEventListener('click', e => {
@@ -65,7 +82,6 @@ emojiBtnArray.forEach(btn => {
 document.querySelector('.emoji > ul').addEventListener('click', e => {
     const emoji = e.target;
     // console.log(emoji.textContent);
-    // add to database
     fetch('http://localhost:3000/emojis', {
         method: 'PATCH',
         "postId": emoji.id,
