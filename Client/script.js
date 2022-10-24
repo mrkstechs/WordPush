@@ -5,21 +5,21 @@ const toSendPost = document.querySelector('#forumPostSection');
 toSendPost.addEventListener('submit',  e => {
     e.preventDefault();
 
-    const temp = document.createElement('p');
-    const txt = document.getElementById('commentText').value;
-    if(txt.length > 300) toSendPost.append('Must have less than 300 characters');
+    const txt = document.createElement('p');
+    const userTxt = document.getElementById('commentText').value;
+    if(userTxt.length > 300) toSendPost.append('Must have less than 300 characters');
     else {
-        temp.textContent = document.getElementById('commentText').value;
+        txt.textContent = document.getElementById('commentText').value;
         const markup = `
         <div class="post">
             <button class="emoji">Emoji react</button>
             <h3>Example post title</h3>
-            <p>${temp}</p>
+            <p>${txt.textContent}</p>
             <input type="text" placeholder="Add a comment...">
             <input type="submit" value="Send">
         </div>
         `;
-        postSection.append(temp);
+        console.log(typeof(txt))
         postSection.insertAdjacentHTML('beforebegin', markup);
     }
 });
