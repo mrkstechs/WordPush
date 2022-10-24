@@ -27,6 +27,7 @@ body {
     border: 1px solid grey;
     border-radius: 50px;
     margin: 50px;
+    padding: 10px 70px 10px 70px;
 }
 
 #emoji {
