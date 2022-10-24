@@ -4,9 +4,12 @@ const toSendPost = document.querySelector('#forumPostSection');
 const emojiBtnArray = document.querySelectorAll('.emoji');
 
 function CreatePostEntry(postTitle, postBody) {
+    this.postID = "";
     this.title = postTitle;
     this.body = postBody;
+    this.userID;
     this.comments = [];
+    this.reactionEmoji = [];
 }
 
 
