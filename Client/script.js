@@ -31,7 +31,8 @@ async function displayPosts (data) {
         newCommentInput.type = 'text';
         newCommentInput.placeholder = 'Add a comment...'
 
-        const newCommentSubmit = document.createElement('submit');
+        const newCommentSubmit = document.createElement('input');
+        newCommentSubmit.type = 'submit'
         newCommentSubmit.value = 'Send';
 
 
