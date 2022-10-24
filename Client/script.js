@@ -1,6 +1,8 @@
 const postSection = document.querySelector('#allPosts');
 const toSendPost = document.querySelector('#forumPostSection');
 
+
+
 // when comment button (in postSection) is clicked, add new post
 toSendPost.addEventListener('submit',  e => {
     e.preventDefault();
@@ -26,15 +28,17 @@ toSendPost.addEventListener('submit',  e => {
 
 //Fetches all posts from the URL
 function getPosts () {
-    fetch('http://localhost:3000/')
-        .then(allPosts => allPosts.json)
-        .then(displayPosts) 
+    fetch('http://localhost:3000')
+        .then(resp => resp.json())
+        .then(displayPosts)
 }
 
 
 //Displays all posts - variables will need renamed to fit actual data
 function displayPosts (data) {
+    console.log(data);
     for (let i = 0; i < data.length; i++) {
+        console.log('looped')
         const post = data[i];
         const markup = `
         <div class="post">
@@ -48,8 +52,4 @@ function displayPosts (data) {
     }
 };
 
-
-const exampleData = [{title: 'Hello World!',
-                    body: 'Blah blah blah blah blah blah blaaah ablblha bablb b blbfaaf ffhyllllb bbal e eqrppro  f y  y afhei  a;lf s.'}];
-
-displayPosts(exampleData);
+getPosts();
