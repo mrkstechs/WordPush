@@ -19,7 +19,7 @@ body {
     display: grid;
     grid-template: ". header ." 1fr 5fr 1fr
                     ". forumPostSection ." 1fr 5fr 1fr
-                    " . allPosts ." 1fr 5fr 1fr;
+                    " . allPosts ."1fr 5fr 1fr;
 }
 
 
