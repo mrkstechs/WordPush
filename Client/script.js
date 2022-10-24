@@ -49,16 +49,19 @@ emojiBtnArray.forEach(btn => {
     btn.setAttribute("id", "post"+count.toString());
 
     btn.addEventListener('click', e => {
-        if(prevPostClick <= 0) prevPostClick = btn.id;
+        // reset clickOnce
+        if(prevPostClick <= 0 || !clickOnce) prevPostClick = btn.id;
+        // if not the same post's emoji clicked
         else if(prevPostClick.toString() !== e.target.id) {
-            console.log('not same: '+prevPostClick, btn.id);
-            clickOnce = false; // close old emoji react
-            document.getElementById('emoji-list').remove();
-            prevPostClick = btn.id;
+            // console.log('not same: '+prevPostClick, btn.id);
+            if(clickOnce){
+                prevPostClick = btn.id;
+                document.getElementById('emoji-list').remove();
+                clickOnce = false; // close oldler post's emoji react
+            }
         }
         clickOnce = !clickOnce; // reset button boolean each time clicked
-        //console.log('emoji display on? '+clickOnce);
-        console.log(btn.id);
+        // console.log('emoji display on? '+clickOnce);
         if(clickOnce) {
             const markup = `<ul id='emoji-list'>
                 <li id="1">😀</li><li id="2">😥</li><li id="3">😮</li>
@@ -66,6 +69,20 @@ emojiBtnArray.forEach(btn => {
             return document.getElementById(btn.id).insertAdjacentHTML("beforeend", markup);
         }
         document.getElementById('emoji-list').remove();
+    })
+
+    //when a emoji is selected
+    //note: still need to test out fetch
+    //when emoji react is clicked it counts that as event too, need to exclude
+    btn.addEventListener('click', e => {
+        const emoji = e.target;
+        console.log(emoji);
+        fetch('http://localhost:3000/emojis', {
+            method: 'PATCH',
+            "postId": emoji.id,
+            "emojiToAdd": emoji.textContent
+        })
+        
     })
     count++;
 })
@@ -76,18 +93,6 @@ emojiBtnArray.forEach(btn => {
 //     if(clickOnce) return document.querySelector('ul').style.display = 'block';
 //     document.querySelector('ul').style.display = 'none';
 // })
-
-// when one emoji selected
-//note: still need to test out fetch
-document.querySelector('.emoji > ul').addEventListener('click', e => {
-    const emoji = e.target;
-    // console.log(emoji.textContent);
-    fetch('http://localhost:3000/emojis', {
-        method: 'PATCH',
-        "postId": emoji.id,
-        "emojiToAdd": emoji.textContent
-    })
-})
 
 //Fetches all posts from the URL
 function getPosts () {
