@@ -49,6 +49,7 @@ function displayPosts (data) {
     for (let i = 0; i < data.length; i++) {
         console.log('looped')
         const post = data[i];
+        const commentSectionID = `comment_${i}`;
         const markup = `
         <div class="post">
             <button class="emoji">Emoji react</button>
@@ -56,9 +57,31 @@ function displayPosts (data) {
             <p>${post.body}</p>
             <input type="text" placeholder="Add a comment...">
             <input type="submit" value="Send">
+            <div id="${commentSectionID}" class="commentSection">
+            </div>
         </div>`;
+
         postSection.insertAdjacentHTML('beforeend', markup);
+
+        const comments = post.comments
+        const commentSection = document.querySelector(`#${commentSectionID}`)
+
+        displayComments(comments, commentSection);
     }
 };
+
+//Display all comments on a correlated post
+function displayComments (comments, commentSection) {
+
+    for (let j = 0; j < comments.length; j++) {
+        const comment = comments[j];
+        const markupComment = `
+            <h4>${comment.user.username}</h4>
+            <p>${comment.body}</p>`
+        commentSection.insertAdjacentHTML('beforeend',markupComment)
+    }
+
+}
+
 
 getPosts();
