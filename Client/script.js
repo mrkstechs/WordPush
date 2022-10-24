@@ -1,6 +1,7 @@
 const postSection = document.querySelector('#allPosts');
 const toSendPost = document.querySelector('#forumPostSection');
-const emojiBtn = document.querySelector('.emoji');
+// const emojiBtn = document.querySelector('.emoji');
+const emojiBtnArray = document.querySelectorAll('.emoji');
 
 function CreatePostEntry(postTitle, postBody) {
     this.postID = "";
@@ -40,32 +41,36 @@ toSendPost.addEventListener('submit',  e => {
 });
 
 // when emoji react button is clicked, add emoji 
-let clickOnce = false;
 // note in css, must set list of emojis hidden
-emojiBtn.addEventListener('click', e => {
-    clickOnce = !clickOnce; // reset button boolean each time clicked
-    console.log('emoji display on? '+clickOnce);
-    if(clickOnce) return document.querySelector('ul').style.display = 'block';
-    document.querySelector('ul').style.display = 'none';
+emojiBtnArray.forEach(btn => {
+    let clickOnce = false;
+    console.log(btn)
+    btn.addEventListener('click', e => {
+        clickOnce = !clickOnce; // reset button boolean each time clicked
+        console.log('emoji display on? '+clickOnce);
+        if(clickOnce) return document.querySelector('ul').style.display = 'block';
+        return document.querySelector('ul').style.display = 'none';
+    })
 })
 
-// when one emoji selected 
-document.querySelector('.emoji > ul').addEventListener('click', e => {
-    const emojiId = e.target.id; // for postId
-    console.log(emojiId);
+// emojiBtn.addEventListener('click', e => {
+//     clickOnce = !clickOnce; // reset button boolean each time clicked
+//     console.log('emoji display on? '+clickOnce);
+//     if(clickOnce) return document.querySelector('ul').style.display = 'block';
+//     document.querySelector('ul').style.display = 'none';
+// })
 
+// when one emoji selected
+//note: still need to test out fetch
+document.querySelector('.emoji > ul').addEventListener('click', e => {
+    const emoji = e.target;
+    // console.log(emoji.textContent);
     // add to database
     fetch('http://localhost:3000/emojis', {
         method: 'PATCH',
-        "postId": emojiId
-        // "emojiToAdd": 
+        "postId": emoji.id,
+        "emojiToAdd": emoji.textContent
     })
-
-
-        // .then(resp => resp.json())
-        // .then(() => {
-        //     "postId": emojiId
-        // })
 })
 
 //Fetches all posts from the URL
