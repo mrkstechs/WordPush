@@ -23,7 +23,8 @@
               "username": "omarsland1y"
             }
           }],
-        "reactionEmoji": ["😀", "😥", "😮"]
+        "reactionEmoji": ["😀", "😥", "😮"],
+        "img": "../assets/testimg1.png"
       },
       {
         "postId": 2,
@@ -49,7 +50,8 @@
               "username": "cdavydochkin2o"
             }
           }],
-        "reactionEmoji": ["😀"]
+        "reactionEmoji": ["😀"],
+        "img": "../assets/testimg1.png"
       },
       {
         "postId": 3,
@@ -76,6 +78,7 @@
             }
           }],
           
-        "reactionEmoji": ["😥", "😮"]
+        "reactionEmoji": ["😥", "😮"],
+        "img": "../assets/testimg1.png"
       }
 ]

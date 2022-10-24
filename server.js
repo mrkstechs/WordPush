@@ -11,17 +11,16 @@ const postsData = require('./db/posts.json');
 const commentsData = require('./db/comments.json');
 const userData = require('./db/users.json');
 
-const { uniqueId, getDate } = require('./functions')
+const { uniqueId, getDate } = require('./functions');
 
 //Users should be able to view other peoples' entries. (2)
 //working so far
 app.get('/', (req, res)=> {
     console.log('/')
-    res.send(postsData[postsData]);
+    res.send(postsData);
 });
 
 app.get('/:id', (req, res)=> {
-
 
     console.log(parseInt(req.params.id));
     const postIdSearch = postsData.findIndex(post => {
@@ -37,7 +36,7 @@ app.get('/:id', (req, res)=> {
 
 //Users should be able to anonymously post journal entries. (3)
 //Working so far with req.body
-app.post('/post', (req, res)=> {
+app.post('/posts', (req, res)=> {
     
     let postToAdd = req.body;
     postToAdd.postId = uniqueId();
@@ -80,13 +79,45 @@ app.post('/emojis', (req, res)=> {
 });
 
 //user can update post
+app.patch('/posts', (req, res)=> {
+    
+    let postId = req.body.postId;
+    const findPostIndex = postsData.findIndex((post)=> {
+        return post.postId === postId;
+    });
 
+    postsData[findPostIndex].body = req.body.body;
+    console.log(postsData[findPostIndex]);
+
+    res.send(postsData);
+});
 
 //user can update comment
+app.patch('/comments', (req, res)=> {
+    
+    let commentToUpdate = req.body
+    console.log(commentToUpdate);
+    const findPostIndex = postsData.findIndex((post)=> {
+        return post.postId === commentToUpdate.postId;
+    });
+
+    console.log(findPostIndex);
+
+    const findCommentIndex = postsData[findPostIndex].comments.findIndex((comment)=> {
+        return comment.commentId === commentToUpdate.commentId;
+    });
+
+    console.log(findCommentIndex);
+
+    const updateComment = postsData[findPostIndex].comments[findCommentIndex].body = commentToUpdate.comment
+    console.log(updateComment);
+
+    res.send(postsData);
+});
 
 
-//user can update or delete their post
-app.delete('/post', (req, res)=> {
+//user can delete post
+app.delete('/posts', (req, res)=> {
     
     let postId = req.body.postId;
     const findPostIndex = postsData.findIndex((post)=> {
@@ -97,7 +128,7 @@ app.delete('/post', (req, res)=> {
     res.send(postsData);
 });
 
-//user can update or delete their comment
+//user can delete comment
 app.delete('/comments', (req, res)=> {
 
     let commentToDelete = req.body
