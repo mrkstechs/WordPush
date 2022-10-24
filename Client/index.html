@@ -5,8 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>wordpush</title>
-    <link rel="icon" type="" href="/assets/favicon1.png">
-    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="" href="assets/images/favicon1.png">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script defer src="script.js"></script>
 </head>
 <body>
     <header>
@@ -15,28 +16,37 @@
     <main>
         <section id="forumPostSection">
             <form action="">
-                <input type="text" placeholder="Add your own forum post!..">
+                <input id="commentTitle" type="text" placeholder="Title your post!" required>
+                <input id="commentText" type="text" placeholder="Add your own forum post!.." required>
                 <input type="submit" value="Post!">
             </form>
         </section>
         <section id="allPosts">
             <div class="post">
+                <button class="emoji">Emoji react
+                    <ul>
+                        <li>😀</li><li>😥</li><li>😮</li>
+                    </ul>
+                </button>
                 <h3>Example post title</h3>
-                <button class="emoji">Emoji react</button>
                 <p>This is a bunch of text that a user may choose to type - up to a certain number of characters.</p>
                 <input type="text" placeholder="Add a comment...">
                 <input type="submit" value="Send">
             </div>
             <div class="post">
+                <button class="emoji">Emoji react
+                    <ul>
+                        <li>😀</li><li>😥</li><li>😮</li>
+                    </ul>
+                </button>
                 <h3>Example post title 2</h3>
-                <button class="emoji">Emoji react</button>
                 <p>This is some more text that a user may choose to type. Idk what sort of stuff people would be saying.</p>
                 <input type="text" placeholder="Add a comment...">
                 <input type="submit" value="Send">
             </div>
             <div class="post">
-                <h3>Example post title 3</h3>
                 <button class="emoji">Emoji react</button>
+                <h3>Example post title 3</h3>
                 <p>BBC Goodfood vintage chocolate chip cookie recipe - STEP 1Heat the oven to 190C/fan170C/gas 5 and line two baking sheets with non-stick baking paper. STEP 2
                     Put 150g softened salted butter, 80g light brown muscovado sugar and 80g granulated sugar into a bowl and beat until creamy.</p>
                 <input type="text" placeholder="Add a comment...">
