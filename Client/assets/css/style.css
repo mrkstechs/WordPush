@@ -30,6 +30,13 @@ body {
     padding: 10px 70px 10px 70px;
 }
 
-#emoji {
+
+.commentSection h4 {
+    border-top: 2px dashed grey;
+}
+
+
+
+.emoji {
     grid-area: "emoji";   
 }

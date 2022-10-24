@@ -48,7 +48,7 @@ function displayPosts (data) {
             <p>${post.body}</p>
             <input type="text" placeholder="Add a comment...">
             <input type="submit" value="Send">
-            <div id="${commentSectionID}">
+            <div id="${commentSectionID}" class="commentSection">
             </div>
         </div>`;
 
