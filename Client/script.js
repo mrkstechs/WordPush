@@ -2,16 +2,26 @@ const postSection = document.querySelector('#allPosts');
 const toSendPost = document.querySelector('#forumPostSection');
 const emojiBtn = document.querySelector('.emoji');
 
+function CreatePostEntry(postTitle, postBody) {
+    this.title = postTitle;
+    this.body = postBody;
+    this.comments = [];
+}
+
 
 // when comment button (in postSection) is clicked, add new post
 toSendPost.addEventListener('submit',  e => {
     e.preventDefault();
 
-    const txt = document.createElement('p');
-    const userTxt = document.getElementById('commentText').value;
-    if(userTxt.length > 300) toSendPost.append('Must have less than 300 characters');
+    const userTitle = document.getElementById('commentTitle').value;
+    const userBody = document.getElementById('commentText').value;
+    
+    if(userBody.length > 300) toSendPost.append('Must have less than 300 characters');
     else {
-        txt.textContent = document.getElementById('commentText').value;
+        const userPost = new CreatePostEntry(userTitle, userBody)
+        console.log(userPost)
+        fetch('http://localhost:3000', {method: 'POST', body: JSON.stringify(userPost)})
+
         const markup = `
         <div class="post">
             <button class="emoji">Emoji react</button>
