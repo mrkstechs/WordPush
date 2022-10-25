@@ -1,6 +1,6 @@
 const postSection = document.querySelector('#allPosts');
 const toSendPost = document.querySelector('#forumPostSection');
-const emojiBtnArray = document.querySelectorAll('.emoji');
+const emojiBtnArray = document.querySelectorAll('.postHeader > .emoji');
 // const postComment = document.querySelectorAll('.post');
 
 function CreatePostEntry(postTitle, postBody) {
@@ -43,6 +43,7 @@ let clickOnce = false;
 let prevPostClick = 0;
 emojiBtnArray.forEach(btn => {
     // btn.setAttribute("id", "post"+count.toString());
+    // console.log();
     btn.addEventListener('click', e => {
         // reset clickOnce
         if(prevPostClick <= 0 || !clickOnce) prevPostClick = btn.id;
@@ -79,7 +80,6 @@ emojiBtnArray.forEach(btn => {
             "emojiToAdd": emoji.textContent
         })
     })
-    count++;
 })
 
 // emojiBtn.addEventListener('click', e => {
