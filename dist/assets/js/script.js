@@ -4,10 +4,10 @@ const emojiBtnArray = document.querySelectorAll('.emoji');
 const postComment = document.querySelectorAll('.post');
 
 function CreatePostEntry(postTitle, postBody) {
-    this.postID = "";
+    this.postId = "";
     this.title = postTitle;
     this.body = postBody;
-    this.userID;
+    this.userId;
     this.comments = [];
     this.reactionEmoji = [];
 }
@@ -21,9 +21,11 @@ toSendPost.addEventListener('submit',  e => {
     const userBody = document.getElementById('commentText').value;
     
     const userPost = new CreatePostEntry(userTitle, userBody)
-        console.log(userPost)
-        fetch('http://localhost:3000/posts', {method: 'POST', body: JSON.stringify(userPost)})
-
+    fetch('http://localhost:3000/posts', {
+        method: 'POST',
+        body: JSON.stringify(userPost),
+        headers: {'Content-Type': 'application/json'}
+    }).then(res => res.json()).then(data => console.log(data))
         const markup = `
         <div class="post">
             <button class="emoji">Emoji react</button>
@@ -134,7 +136,7 @@ function displayPosts (data) {
         const markup = `
         <div class="post">
             <button class="emoji">Emoji react</button>
-            <h3>${post.title}</h3>
+            <h3><a href="http://localhost:3000/${post.postId}">${post.title}</a></h3>
             <p>${post.body}</p>
             <input type="text" placeholder="Add a comment...">
             <input type="submit" value="Send">
