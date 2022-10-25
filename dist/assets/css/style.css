@@ -106,6 +106,14 @@ body {
     border: 5px inset darkred;
 }
 
+.postHeader{
+    display: flex;
+}
+
+.postHeader p {
+    font-size: 18px;
+}
+
 .commentSection p {
     margin: 2px;
     font-size: 25px;
