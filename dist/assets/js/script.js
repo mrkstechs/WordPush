@@ -1,6 +1,6 @@
 const postSection = document.querySelector('#allPosts');
 const toSendPost = document.querySelector('#forumPostSection');
-const emojiBtnArray = document.querySelectorAll('.postHeader > .emoji');
+// const emojiBtnArray = document.querySelectorAll('.postHeader > .emoji');
 // const postComment = document.querySelectorAll('.post');
 
 function CreatePostEntry(postTitle, postBody) {
@@ -71,7 +71,8 @@ function displayPosts (data) {
         const comments = post.comments
         const commentSection = document.querySelector(`#${commentSectionID}`)
 
-        displayComments(comments, commentSection);
+        displayComments(comments, commentSection)
+        displayEmojis(post.reactionEmoji, document.querySelector('.emoji'))
     }
     
     activateCommentButtons()
@@ -120,6 +121,15 @@ function activateEmojiButtons(){
         })
         index++;
     })
+}
+
+function displayEmojis (emojis, section) {
+    let markup = `<ul>`;
+    for (let i = 0; i < emojis.length; i++) {
+        markup += `<li>${emojis}</li>`
+    }
+    markup += `</ul>`
+    section.insertAdjacentHTML('afterend', markup);
 }
 
 function activateCommentButtons() {
