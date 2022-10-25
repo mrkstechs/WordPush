@@ -13,6 +13,7 @@ app.use(express.static(path.join(__dirname, '../dist/assets')))
 router.get('/', (req, res) => res.sendFile(path.join(__dirname, '../dist/index.html')))
 
 app.use('/.netlify/functions/server', router);  // path must route to lambda
+
 app.use('/', (req, res) => res.sendFile(path.join(__dirname, '../dist/index.html')))
 
 module.exports = app
