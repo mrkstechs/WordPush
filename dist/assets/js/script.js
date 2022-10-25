@@ -83,17 +83,17 @@ emojiBtnArray.forEach(btn => {
     count++;
 })
 
-// const postCommentBtn = document.getElementsByClassName('post');
-// postCommentBtn.addEventListener('submit', e => {
-//     console.log('works');
-// })
+const postCommentBtn = document.getElementsByClassName('post');
+postCommentBtn.addEventListener('submit', e => {
+    console.log('works');
+})
 
-// emojiBtn.addEventListener('click', e => {
-//     clickOnce = !clickOnce; // reset button boolean each time clicked
-//     console.log('emoji display on? '+clickOnce);
-//     if(clickOnce) return document.querySelector('ul').style.display = 'block';
-//     document.querySelector('ul').style.display = 'none';
-// })
+emojiBtn.addEventListener('click', e => {
+    clickOnce = !clickOnce; // reset button boolean each time clicked
+    console.log('emoji display on? '+clickOnce);
+    if(clickOnce) return document.querySelector('ul').style.display = 'block';
+    document.querySelector('ul').style.display = 'none';
+})
 
 //Fetches all posts from the URL
 function getPosts () {
