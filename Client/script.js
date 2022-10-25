@@ -28,7 +28,7 @@ toSendPost.addEventListener('submit',  e => {
         const markup = `
         <div class="post">
             <button class="emoji">Emoji react</button>
-            <h3><a href="http://localhost:3000/${post.postId}">${userTitle}</a></h3>
+            <h3>${userTitle}</h3>
             <p>${userBody}</p>
             <input type="text" placeholder="Add a comment...">
             <input type="submit" value="Send">
@@ -83,10 +83,10 @@ emojiBtnArray.forEach(btn => {
     count++;
 })
 
-const postCommentBtn = document.getElementsByClassName('post');
-postCommentBtn.addEventListener('submit', e => {
-    console.log('works');
-})
+// const postCommentBtn = document.getElementsByClassName('post');
+// postCommentBtn.addEventListener('submit', e => {
+//     console.log('works');
+// })
 
 // emojiBtn.addEventListener('click', e => {
 //     clickOnce = !clickOnce; // reset button boolean each time clicked

@@ -21,14 +21,10 @@ app.get('/', (req, res)=> {
 });
 
 app.get('/:id', (req, res)=> {
-
-    console.log(parseInt(req.params.id));
     const postIdSearch = postsData.findIndex(post => {
-        return post.postId === parseInt(req.params.id);
+        return post.postId.toString() === req.params.id;
     })
-
     console.log(postIdSearch);
-
     //if(!postIdSearch) return res.status(404).send('this post does not exist')
     res.send(postsData[postIdSearch])
 });
