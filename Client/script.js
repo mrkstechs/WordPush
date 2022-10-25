@@ -25,9 +25,6 @@ toSendPost.addEventListener('submit',  e => {
         body: JSON.stringify(userPost),
         headers: {'Content-Type': 'application/json'}
     }).then(res => res.json()).then(data => console.log(data))
-    
-        // fetch('http://localhost:3000/posts', {method: 'POST', 'Content-Type': 'application/json', body: JSON.stringify(userPost)})
-        //     .then(res => res.json()).then(data => console.log(data))
         const markup = `
         <div class="post">
             <button class="emoji">Emoji react</button>
