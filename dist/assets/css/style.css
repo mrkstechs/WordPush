@@ -58,6 +58,7 @@ form{
     display: flex;
     flex-direction: column;
     align-items: center;
+    
 }
 
 input {
@@ -68,6 +69,7 @@ input {
     width: 750px;
     height: 25px;
     font-size: 18px;
+    font-family: "Handlee";
 }
 
 input[type="submit"] {
@@ -112,4 +114,22 @@ body {
     border-top: 2px dashed darkred;
     font-size: 20px;
     margin: 15px;
+}
+
+.emoji {
+    color: white; 
+    background-color: rgb(183, 62, 62);
+    border: 4px outset darkred;
+    font-family: "Handlee";
+    font-size: 20px;
+    display: flex;
+    flex-direction: row-reverse;
+    float: right;
+}
+
+.emoji ul {
+    display: flex;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
 }
