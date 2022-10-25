@@ -28,7 +28,7 @@ toSendPost.addEventListener('submit',  e => {
         const markup = `
         <div class="post">
             <button class="emoji">Emoji react</button>
-            <h3>${userTitle}</h3>
+            <h3><a href="http://localhost:3000/${post.postId}">${userTitle}</a></h3>
             <p>${userBody}</p>
             <input type="text" placeholder="Add a comment...">
             <input type="submit" value="Send">
