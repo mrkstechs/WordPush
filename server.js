@@ -52,10 +52,16 @@ app.post('/comments', (req, res)=> {
     comment.date = getDate();
 
     const findPostIndex = postsData.findIndex((post)=> {
-        return post.postId === postId;
+        return post.postId == postId;
     })
 
+    console.log(req.body);
+    console.log(findPostIndex);
+
+    console.log(postsData[findPostIndex])
+    console.log(postsData[findPostIndex].comments);
     postsData[findPostIndex].comments.push(comment);
+
 
     res.send(postsData);
 });
