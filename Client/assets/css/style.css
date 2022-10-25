@@ -10,6 +10,13 @@ header {
     grid-area: "forumPostSection";
 }
 
+form{
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+    align-items: center;
+}
+
 .allPosts {
     grid-area: "allPosts";
 }
@@ -39,4 +46,11 @@ body {
 
 .emoji {
     grid-area: "emoji";   
+}
+
+#commentText {
+    height: 100px;
+    width: 400px;
+    padding: 1px;
+    resize: none;
 }
