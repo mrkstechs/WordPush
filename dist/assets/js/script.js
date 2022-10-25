@@ -115,8 +115,11 @@ function displayPosts (data) {
         const commentSubmitID = `commentSubmit_${i}`;
         const markup = `
         <div class="post" id="${post.postId}">
-            <button class="emoji">Emoji react</button>
-            <h3><a href="http://localhost:3000/${post.postId}">${post.title}</a></h3>
+            <div class="postHeader">
+                <p>${post.date}</p>
+                <h3><a href="http://localhost:3000/${post.postId}">${post.title}</a></h3>
+                <button class="emoji">Emoji react</button>
+            </div>
             <p>${post.body}</p>
             <form action="" id="${commentSubmitID}">
                 <input type="text" placeholder="Add a comment..." required>
