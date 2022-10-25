@@ -28,14 +28,15 @@ A simple blog posting website where users can post to the main feed & reacted to
 
 #### script.js
 - getPosts and displayPosts functions added
-
+- displayComments function added
+- display emoji react button added
 
 ### Server
 
 
 
 ## Bugs
-
+- Link to individual posts only works upon refresh for new posts
 
 ## Wins and Challenges
 ### Wins
