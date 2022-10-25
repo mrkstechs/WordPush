@@ -27,6 +27,9 @@ header {
 }
 
 main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     background-color: rgb(221, 83, 83);
     border: 5px outset darkred;
     font-family: "Handlee";
@@ -47,40 +50,41 @@ main p {
     margin-top: 10px;
 }
 
-.forumPostSection {
-    grid-area: "forumPostSection";
-    background-color: rgb(183, 62, 62);
-    border: 5px outset darkred;
+#forumPostSection {
+    margin: 20px;
 }
 
 form{
     display: flex;
     flex-direction: column;
-    max-width: 500px;
     align-items: center;
-
 }
 
 input {
     background-color:rgb(237, 219, 192);
     border: 2px inset darkred;
     border-radius: 8px;
-    font-size: 16px;
+    font-size: 18px;
+    width: 750px;
+    height: 25px;
+    font-size: 18px;
 }
 
 input[type="submit"] {
     color: white;
     background-color: rgb(183, 62, 62);
+    width: 80px;
 }
 
 textarea {
     background-color:rgb(237, 219, 192);
     border: 2px inset darkred;
     border-radius: 8px;
-}
-
-.allPosts {
-    grid-area: "allPosts";
+    height: 100px;
+    width: 750px;
+    padding: 1px;
+    resize: none;
+    font-size: 18px;
 }
 
 body {
@@ -89,7 +93,6 @@ body {
     flex-direction: column;
     margin: auto;
 }
-
 
 .post {
     background-color: rgb(219, 200, 172);
@@ -109,15 +112,4 @@ body {
     border-top: 2px dashed darkred;
     font-size: 20px;
     margin: 15px;
-}
-
-.emoji {
-    grid-area: "emoji";   
-}
-
-#commentText {
-    height: 100px;
-    width: 400px;
-    padding: 1px;
-    resize: none;
 }
