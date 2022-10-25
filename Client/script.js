@@ -1,6 +1,5 @@
 const postSection = document.querySelector('#allPosts');
 const toSendPost = document.querySelector('#forumPostSection');
-// const emojiBtn = document.querySelector('.emoji');
 const emojiBtnArray = document.querySelectorAll('.emoji');
 
 function CreatePostEntry(postTitle, postBody) {
@@ -85,6 +84,11 @@ emojiBtnArray.forEach(btn => {
         })
     })
     count++;
+})
+
+const postCommentBtn = document.getElementsByClassName('post');
+postCommentBtn.addEventListener('submit', e => {
+    console.log('works');
 })
 
 // emojiBtn.addEventListener('click', e => {
