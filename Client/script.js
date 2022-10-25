@@ -4,10 +4,10 @@ const toSendPost = document.querySelector('#forumPostSection');
 const emojiBtnArray = document.querySelectorAll('.emoji');
 
 function CreatePostEntry(postTitle, postBody) {
-    this.postID = "";
+    this.postId = "";
     this.title = postTitle;
     this.body = postBody;
-    this.userID;
+    this.userId;
     this.comments = [];
     this.reactionEmoji = [];
 }
@@ -21,9 +21,14 @@ toSendPost.addEventListener('submit',  e => {
     const userBody = document.getElementById('commentText').value;
     
     const userPost = new CreatePostEntry(userTitle, userBody)
-        console.log(userPost)
-        fetch('http://localhost:3000/posts', {method: 'POST', body: JSON.stringify(userPost)})
-
+    fetch('http://localhost:3000/posts', {
+        method: 'POST',
+        body: JSON.stringify(userPost),
+        headers: {'Content-Type': 'application/json'}
+    }).then(res => res.json()).then(data => console.log(data))
+    
+        // fetch('http://localhost:3000/posts', {method: 'POST', 'Content-Type': 'application/json', body: JSON.stringify(userPost)})
+        //     .then(res => res.json()).then(data => console.log(data))
         const markup = `
         <div class="post">
             <button class="emoji">Emoji react</button>
