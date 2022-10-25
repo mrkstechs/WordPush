@@ -4,8 +4,9 @@
   "description": "Project Week Project at FutureProof by Team Matcha",
   "main": "server.js",
   "scripts": {
-    "start": "node server",
-    "dev": "nodemon server",
+    "build": "netlify-lambda build express",
+    "start": "nodemon server",
+    "dev": "nodemon server/app",
     "test": "jest --wacthAll"
   },
   "repository": {
