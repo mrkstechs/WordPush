@@ -123,6 +123,7 @@ function displayPosts (data) {
         console.log('looped')
         const post = data[i];
         const commentSectionID = `comment_${i}`;
+        const commentSubmitID = `commentSubmit_${i}`;
         const markup = `
         <div class="post">
             <div class="postHeader">
@@ -131,8 +132,10 @@ function displayPosts (data) {
                 <button class="emoji">React</button>
             </div>
             <p>${post.body}</p>
-            <input type="text" placeholder="Add a comment...">
-            <input type="submit" value="Send">
+            <form action="" id="${commentSubmitID}">
+                <input type="text" placeholder="Add a comment...">
+                <input type="submit" value="Send">
+            </form>
             <div id="${commentSectionID}" class="commentSection">
             </div>
         </div>`;
