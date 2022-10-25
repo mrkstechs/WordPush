@@ -123,7 +123,7 @@ function displayPosts (data) {
             </div>
         </div>`;
 
-        postSection.insertAdjacentHTML('beforeend', markup);
+        postSection.insertAdjacentHTML('afterbegin', markup);
 
         const comments = post.comments
         const commentSection = document.querySelector(`#${commentSectionID}`)
