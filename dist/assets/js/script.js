@@ -14,7 +14,7 @@ function CreatePostEntry(postTitle, postBody) {
 
 function CreateComment(commentBody, postID) {
     this.commentId = "";
-    this.comment = commentBody;
+    this.body = commentBody;
     this.postId = postID;
     this.user = {};
 }
@@ -46,48 +46,48 @@ function setEmojiDisplayID(isNew){
 }
 
 // when emoji react button is clicked, add emoji 
-let clickOnce = false;
-let prevPostClick = 0;
-emojiBtnArray.forEach(btn => {
-    // btn.setAttribute("id", "post"+count.toString());
-    // console.log();
-    btn.addEventListener('click', e => {
-        // reset clickOnce
-        if(prevPostClick <= 0 || !clickOnce) prevPostClick = btn.id;
-        // if not the same post's emoji clicked
-        else if(prevPostClick.toString() !== e.target.id) {
-            console.log('not same: '+prevPostClick, btn.id);
-            if(clickOnce){
-                prevPostClick = btn.id;
-                document.getElementById('emoji-list').remove();
-                clickOnce = false; // close oldler post's emoji react
-            }
-        }
-        clickOnce = !clickOnce; // reset button boolean each time clicked
-        // console.log('emoji display on? '+clickOnce);
-        if(clickOnce) {
-            const markup = `<ul id='emoji-list'>
-                <li id="1">😀</li><li id="2">😥</li><li id="3">😮</li>
-            </ul>`
-            return document.getElementById(btn.id).insertAdjacentHTML("beforeend", markup);
-        }
-        document.getElementById('emoji-list').remove();
-    })
+// let clickOnce = false;
+// let prevPostClick = 0;
+// emojiBtnArray.forEach(btn => {
+//     // btn.setAttribute("id", "post"+count.toString());
+//     btn.addEventListener('click', e => {
+//         // reset clickOnce
+//         if(prevPostClick <= 0 || !clickOnce) prevPostClick = btn.id;
+//         // if not the same post's emoji clicked
+//         else if(prevPostClick.toString() !== e.target.id) {
+//             console.log('not same: '+prevPostClick, btn.id);
+//             if(clickOnce){
+//                 prevPostClick = btn.id;
+//                 document.getElementById('emoji-list').remove();
+//                 clickOnce = false; // close oldler post's emoji react
+//             }
+//         }
+//         clickOnce = !clickOnce; // reset button boolean each time clicked
+//         // console.log('emoji display on? '+clickOnce);
+//         if(clickOnce) {
+//             const markup = `<ul id='emoji-list'>
+//                 <li id="1">😀</li><li id="2">😥</li><li id="3">😮</li>
+//             </ul>`
+//             return document.getElementById(btn.id).insertAdjacentHTML("beforeend", markup);
+//         }
+//         document.getElementById('emoji-list').remove();
+//     })
 
-    //when a emoji is selected
-    //note: still need to test out fetch
-    //when emoji react is clicked it counts that as event too, need to exclude
-    //check out addEventListener 3rd parameter
-    btn.addEventListener('click', e => {
-        const emoji = e.target;
-        // console.log(emoji);
-        fetch('http://localhost:3000/emojis', {
-            method: 'PATCH',
-            "postId": emoji.id,
-            "emojiToAdd": emoji.textContent
-        })
-    })
-})
+//     //when a emoji is selected
+//     //note: still need to test out fetch
+//     //when emoji react is clicked it counts that as event too, need to exclude
+//     //check out addEventListener 3rd parameter
+//     btn.addEventListener('click', e => {
+//         const emoji = e.target;
+//         // console.log(emoji);
+//         fetch('http://localhost:3000/emojis', {
+//             method: 'PATCH',
+//             "postId": emoji.id,
+//             "emojiToAdd": emoji.textContent
+//         })
+//     })
+//     count++;
+// })
 
 // emojiBtn.addEventListener('click', e => {
 //     clickOnce = !clickOnce; // reset button boolean each time clicked
@@ -144,6 +144,7 @@ function activateCommentButtons() {
         const parentPost = form.parentElement;
         form.addEventListener('submit', e => {
             e.preventDefault();
+            window.location.reload(true);
             const commentBody = form.firstElementChild.value;
             postComment(commentBody, parentPost.getAttribute('id'))
         })
@@ -194,7 +195,6 @@ function displayComments (comments, commentSection) {
         const markupComment = `
             <div class="commentHeader">
                 <p>${comment.date}</p>
-                <h4>${comment.user.username}</h4>
             </div>
             <p>${comment.body}</p>`
 

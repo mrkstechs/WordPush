@@ -55,11 +55,10 @@ app.post('/comments', (req, res)=> {
         return post.postId == postId;
     })
 
-    console.log(req.body);
+    console.log(comment);
     console.log(findPostIndex);
 
     console.log(postsData[findPostIndex])
-    console.log(postsData[findPostIndex].comments);
     postsData[findPostIndex].comments.push(comment);
 
 
