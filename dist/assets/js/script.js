@@ -15,30 +15,16 @@ function CreatePostEntry(postTitle, postBody) {
 
 // when comment button (in postSection) is clicked, add new post
 toSendPost.addEventListener('submit',  e => {
-    e.preventDefault();
 
     const userTitle = document.getElementById('commentTitle').value;
     const userBody = document.getElementById('commentText').value;
-    
+
     const userPost = new CreatePostEntry(userTitle, userBody)
     fetch('http://localhost:3000/posts', {
         method: 'POST',
         body: JSON.stringify(userPost),
         headers: {'Content-Type': 'application/json'}
     }).then(res => res.json()).then(data => console.log(data))
-        const markup = `
-        <div class="post">
-            <button class="emoji">Emoji react</button>
-            <h3>${userTitle}</h3>
-            <p>${userBody}</p>
-            <input type="text" placeholder="Add a comment...">
-            <input type="submit" value="Send">
-        </div>
-        `;
-        postSection.insertAdjacentHTML('afterbegin', markup);
-
-        
-        setEmojiDisplayID(true);
 });
 
 // for display only - not actual emojiId
@@ -144,13 +130,16 @@ function displayPosts (data) {
         console.log('looped')
         const post = data[i];
         const commentSectionID = `comment_${i}`;
+        const commentSubmitID = `commentSubmit_${i}`;
         const markup = `
         <div class="post">
-            <button class="emoji">React</button>
+            <button class="emoji">Emoji react</button>
             <h3><a href="http://localhost:3000/${post.postId}">${post.title}</a></h3>
             <p>${post.body}</p>
-            <input type="text" placeholder="Add a comment...">
-            <input type="submit" value="Send">
+            <form action="" id="${commentSubmitID}">
+                <input type="text" placeholder="Add a comment...">
+                <input type="submit" value="Send">
+            </form>
             <div id="${commentSectionID}" class="commentSection">
             </div>
         </div>`;
@@ -170,8 +159,12 @@ function displayComments (comments, commentSection) {
     for (let j = 0; j < comments.length; j++) {
         const comment = comments[j];
         const markupComment = `
-            <h4>${comment.user.username}</h4>
+            <div class="commentHeader">
+                <p>${comment.date}</p>
+                <h4>${comment.user.username}</h4>
+            </div>
             <p>${comment.body}</p>`
+
         commentSection.insertAdjacentHTML('beforeend',markupComment)
     }
 }
