@@ -107,7 +107,7 @@ function displayPosts (data) {
         const markup = `
         <div class="post">
             <button class="emoji">Emoji react</button>
-            <h3>${post.title}</h3>
+            <h3><a href="http://localhost:3000/${post.postId}">${post.title}</a></h3>
             <p>${post.body}</p>
             <input type="text" placeholder="Add a comment...">
             <input type="submit" value="Send">
