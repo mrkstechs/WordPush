@@ -140,7 +140,11 @@ function activateCommentButtons() {
 }
 
 function postComment () {
-
+    fetch('http://localhost:3000/comments', {
+        method: 'POST',
+        body: JSON.stringify(userPost),
+        headers: {'Content-Type': 'application/json'}
+    })
 };
 
 // postComment.forEach(form => {
@@ -162,7 +166,7 @@ function postComment () {
 //         newComment.textContent = inputText.textContent;
 //         form.append(newComment); // tester but should send to data to server instead
 
-//         // fetch('http://localhost:3000/', {
+//         // ', {
 //         //     method: 'PATCH',
             
 //         // })
