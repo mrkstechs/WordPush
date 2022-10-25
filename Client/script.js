@@ -1,6 +1,7 @@
 const postSection = document.querySelector('#allPosts');
 const toSendPost = document.querySelector('#forumPostSection');
 const emojiBtnArray = document.querySelectorAll('.emoji');
+const postComment = document.querySelectorAll('.post');
 
 function CreatePostEntry(postTitle, postBody) {
     this.postID = "";
@@ -69,9 +70,10 @@ emojiBtnArray.forEach(btn => {
     //when a emoji is selected
     //note: still need to test out fetch
     //when emoji react is clicked it counts that as event too, need to exclude
+    //check out addEventListener 3rd parameter
     btn.addEventListener('click', e => {
         const emoji = e.target;
-        console.log(emoji);
+        // console.log(emoji);
         fetch('http://localhost:3000/emojis', {
             method: 'PATCH',
             "postId": emoji.id,
@@ -81,9 +83,30 @@ emojiBtnArray.forEach(btn => {
     count++;
 })
 
-const postCommentBtn = document.getElementsByClassName('post');
-postCommentBtn.addEventListener('submit', e => {
-    console.log('works');
+postComment.forEach(btn => {
+    // console.log(btn.lastElementChild.previousElementSibling);
+
+    // for input text: when user clicks on comment area, display previous comments
+    btn.lastElementChild.previousElementSibling.addEventListener('click', e => {
+        console.log('in comment')
+        //display all prev comments above comment & send button
+
+    })
+
+    // click works instead of submit some reason
+    btn.lastElementChild.addEventListener('click', e => {
+        const inputText = btn.lastElementChild.previousSibling;        
+        console.log(inputText.textContent);
+
+        const newComment = document.createElement('p');
+        newComment.textContent = inputText.textContent;
+        btn.append(newComment); // tester but should send to data to server instead
+
+        // fetch('http://localhost:3000/', {
+        //     method: 'PATCH',
+            
+        // })
+    })
 })
 
 // emojiBtn.addEventListener('click', e => {
