@@ -152,8 +152,12 @@ function displayComments (comments, commentSection) {
     for (let j = 0; j < comments.length; j++) {
         const comment = comments[j];
         const markupComment = `
-            <h4>${comment.user.username}</h4>
+            <div class="commentHeader">
+                <p>${comment.date}</p>
+                <h4>${comment.user.username}</h4>
+            </div>
             <p>${comment.body}</p>`
+
         commentSection.insertAdjacentHTML('beforeend',markupComment)
     }
 

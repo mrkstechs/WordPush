@@ -127,15 +127,28 @@ body {
     font-size: 18px;
 }
 
+
+
+
+.commentHeader {
+    border-top: 2px dashed darkred;
+    margin: 15px;
+    height: 30px;
+}
+
+.commentHeader h4 {
+    font-size: 20px;
+}
+
+.commentHeader p {
+    float: left;
+    font-size: 15px;
+}
+
+
 .commentSection p {
     margin: 2px;
     font-size: 25px;
-}
-
-.commentSection h4 {
-    border-top: 2px dashed darkred;
-    font-size: 20px;
-    margin: 15px;
 }
 
 .emoji {
