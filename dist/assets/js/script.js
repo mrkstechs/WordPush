@@ -1,6 +1,6 @@
 const postSection = document.querySelector('#allPosts');
 const toSendPost = document.querySelector('#forumPostSection');
-const emojiBtnArray = document.querySelectorAll('.emoji');
+let emojiBtnArray = document.querySelectorAll('.emoji');
 const postComment = document.querySelectorAll('.post');
 
 function CreatePostEntry(postTitle, postBody) {
@@ -36,22 +36,33 @@ toSendPost.addEventListener('submit',  e => {
         </div>
         `;
         postSection.insertAdjacentHTML('afterbegin', markup);
+
+        
+        setEmojiDisplayID(true);
 });
 
+// for display only - not actual emojiId
+function setEmojiDisplayID(isNew){
+    // if(isNew) emojiBtnArray.length+1;
+    // need to auto update emoji array -_-
+    for(let i = 0; i < emojiBtnArray.length; i++){
+        emojiBtnArray[i].setAttribute("id", "post"+(i+1).toString());
+        console.log(emojiBtnArray[i]);
+    }
+    console.log(emojiBtnArray.length);
+}
+
 // when emoji react button is clicked, add emoji 
-// note in css, must set list of emojis hidden
-let count = 0;
 let clickOnce = false;
 let prevPostClick = 0;
 emojiBtnArray.forEach(btn => {
-    btn.setAttribute("id", "post"+count.toString());
-
+    // btn.setAttribute("id", "post"+count.toString());
     btn.addEventListener('click', e => {
         // reset clickOnce
         if(prevPostClick <= 0 || !clickOnce) prevPostClick = btn.id;
         // if not the same post's emoji clicked
         else if(prevPostClick.toString() !== e.target.id) {
-            // console.log('not same: '+prevPostClick, btn.id);
+            console.log('not same: '+prevPostClick, btn.id);
             if(clickOnce){
                 prevPostClick = btn.id;
                 document.getElementById('emoji-list').remove();
@@ -82,7 +93,6 @@ emojiBtnArray.forEach(btn => {
             "emojiToAdd": emoji.textContent
         })
     })
-    count++;
 })
 
 postComment.forEach(btn => {
@@ -136,7 +146,7 @@ function displayPosts (data) {
         const commentSectionID = `comment_${i}`;
         const markup = `
         <div class="post">
-            <button class="emoji">Emoji react</button>
+            <button class="emoji">React</button>
             <h3><a href="http://localhost:3000/${post.postId}">${post.title}</a></h3>
             <p>${post.body}</p>
             <input type="text" placeholder="Add a comment...">
@@ -164,8 +174,8 @@ function displayComments (comments, commentSection) {
             <p>${comment.body}</p>`
         commentSection.insertAdjacentHTML('beforeend',markupComment)
     }
-
 }
 
 
 getPosts();
+setEmojiDisplayID(false);
