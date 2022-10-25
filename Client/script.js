@@ -35,7 +35,7 @@ toSendPost.addEventListener('submit',  e => {
             <input type="submit" value="Send">
         </div>
         `;
-        document .insertAdjacentHTML('beforebegin', markup);
+        postSection.insertAdjacentHTML('afterbegin', markup);
 
     }
 });
