@@ -119,7 +119,7 @@ function displayPosts (data) {
             <h3><a href="http://localhost:3000/${post.postId}">${post.title}</a></h3>
             <p>${post.body}</p>
             <form action="" id="${commentSubmitID}">
-                <input type="text" placeholder="Add a comment...">
+                <input type="text" placeholder="Add a comment..." required>
                 <input type="submit" value="Send">
             </form>
             <div id="${commentSectionID}" class="commentSection">
@@ -160,33 +160,6 @@ function postComment (commentBody, postID) {
     })
 };
 
-// postComment.forEach(form => {
-//     console.log(form);
-
-//     // for input text: when user clicks on comment area, display previous comments
-//     form.lastElementChild.previousElementSibling.addEventListener('click', e => {
-//         console.log('in comment')
-//         //display all prev comments above comment & send button
-
-//     })
-
-//     // click works instead of submit some reason
-//     form.lastElementChild.addEventListener('click', e => {
-//         const inputText = form.lastElementChild.previousSibling;        
-//         console.log(inputText.textContent);
-
-//         const newComment = document.createElement('p');
-//         newComment.textContent = inputText.textContent;
-//         form.append(newComment); // tester but should send to data to server instead
-
-//         // ', {
-//         //     method: 'PATCH',
-            
-//         // })
-//     })
-// })
-
-
 //Display all comments on a correlated post
 function displayComments (comments, commentSection) {
 
@@ -201,7 +174,6 @@ function displayComments (comments, commentSection) {
         commentSection.insertAdjacentHTML('beforeend',markupComment)
     }
 }
-
 
 getPosts();
 setEmojiDisplayID(false);
