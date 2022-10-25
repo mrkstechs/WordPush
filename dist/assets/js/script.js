@@ -27,22 +27,28 @@ toSendPost.addEventListener('submit',  e => {
     }).then(res => res.json()).then(data => console.log(data))
 });
 
-
+// for display only - not actual emojiId
+function setEmojiDisplayID(isNew){
+    // if(isNew) emojiBtnArray.length+1;
+    // need to auto update emoji array -_-
+    for(let i = 0; i < emojiBtnArray.length; i++){
+        emojiBtnArray[i].setAttribute("id", "post"+(i+1).toString());
+        console.log(emojiBtnArray[i]);
+    }
+    console.log(emojiBtnArray.length);
+}
 
 // when emoji react button is clicked, add emoji 
-// note in css, must set list of emojis hidden
-let count = 0;
 let clickOnce = false;
 let prevPostClick = 0;
 emojiBtnArray.forEach(btn => {
-    btn.setAttribute("id", "post"+count.toString());
-
+    // btn.setAttribute("id", "post"+count.toString());
     btn.addEventListener('click', e => {
         // reset clickOnce
         if(prevPostClick <= 0 || !clickOnce) prevPostClick = btn.id;
         // if not the same post's emoji clicked
         else if(prevPostClick.toString() !== e.target.id) {
-            // console.log('not same: '+prevPostClick, btn.id);
+            console.log('not same: '+prevPostClick, btn.id);
             if(clickOnce){
                 prevPostClick = btn.id;
                 document.getElementById('emoji-list').remove();
@@ -102,11 +108,8 @@ function displayPosts (data) {
         const commentSubmitID = `commentSubmit_${i}`;
         const markup = `
         <div class="post">
-            <div class="postHeader">
-                <p>${post.date}</p>
-                <h3><a href="http://localhost:3000/${post.postId}">${post.title}</a></h3>
-                <button class="emoji">React</button>
-            </div>
+            <button class="emoji">Emoji react</button>
+            <h3><a href="http://localhost:3000/${post.postId}">${post.title}</a></h3>
             <p>${post.body}</p>
             <form action="" id="${commentSubmitID}">
                 <input type="text" placeholder="Add a comment...">
@@ -188,8 +191,8 @@ function displayComments (comments, commentSection) {
 
         commentSection.insertAdjacentHTML('beforeend',markupComment)
     }
-
 }
 
 
 getPosts();
+setEmojiDisplayID(false);
