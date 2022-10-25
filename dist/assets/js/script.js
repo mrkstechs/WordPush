@@ -15,7 +15,6 @@ function CreatePostEntry(postTitle, postBody) {
 
 // when comment button (in postSection) is clicked, add new post
 toSendPost.addEventListener('submit',  e => {
-    e.preventDefault();
 
     const userTitle = document.getElementById('commentTitle').value;
     const userBody = document.getElementById('commentText').value;
@@ -26,18 +25,6 @@ toSendPost.addEventListener('submit',  e => {
         body: JSON.stringify(userPost),
         headers: {'Content-Type': 'application/json'}
     }).then(res => res.json()).then(data => console.log(data))
-        const markup = `
-        <div class="post">
-            <div class="postHeader">
-                <h3>${userTitle}</h3>
-                <button class="emoji">React</button>
-             </div>
-            <p>${userBody}</p>
-            <input type="text" placeholder="Add a comment...">
-            <input type="submit" value="Send">
-        </div>
-        `;
-        postSection.insertAdjacentHTML('afterbegin', markup);
 });
 
 // when emoji react button is clicked, add emoji 
