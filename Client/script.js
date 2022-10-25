@@ -1,7 +1,7 @@
 const postSection = document.querySelector('#allPosts');
 const toSendPost = document.querySelector('#forumPostSection');
-// const emojiBtn = document.querySelector('.emoji');
 const emojiBtnArray = document.querySelectorAll('.emoji');
+const postCommentBtn = document.querySelector('.post > submit');
 
 function CreatePostEntry(postTitle, postBody) {
     this.postID = "";
@@ -82,9 +82,12 @@ emojiBtnArray.forEach(btn => {
             "postId": emoji.id,
             "emojiToAdd": emoji.textContent
         })
-        
     })
     count++;
+})
+
+postCommentBtn.addEventListener('submit', e => {
+    console.log('works');
 })
 
 // emojiBtn.addEventListener('click', e => {
