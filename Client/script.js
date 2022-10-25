@@ -19,9 +19,7 @@ toSendPost.addEventListener('submit',  e => {
     const userTitle = document.getElementById('commentTitle').value;
     const userBody = document.getElementById('commentText').value;
     
-    if(userBody.length > 300) toSendPost.append('Must have less than 300 characters');
-    else {
-        const userPost = new CreatePostEntry(userTitle, userBody)
+    const userPost = new CreatePostEntry(userTitle, userBody)
         console.log(userPost)
         fetch('http://localhost:3000/posts', {method: 'POST', body: JSON.stringify(userPost)})
 
@@ -35,8 +33,6 @@ toSendPost.addEventListener('submit',  e => {
         </div>
         `;
         postSection.insertAdjacentHTML('afterbegin', markup);
-
-    }
 });
 
 // when emoji react button is clicked, add emoji 
