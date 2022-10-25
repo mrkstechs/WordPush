@@ -1,58 +1,137 @@
-* {
-    background-color: snow;
+:root {
+    background-color: rgb(219, 200, 172);
+}
+
+@font-face {
+    font-family: 'Permanent Marker';
+    font-style: normal;
+    font-weight: 400;
+    src: url(https://fonts.gstatic.com/s/permanentmarker/v16/Fh4uPib9Iyv2ucM6pGQMWimMp004La2Cfw.woff2) format('woff2');
+}
+
+@font-face {
+    font-family: 'Handlee';
+    font-style: normal;
+    font-weight: 400;
+    src: url(https://fonts.gstatic.com/s/handlee/v14/-F6xfjBsISg9aMakPm3wow.woff2) format('woff2')
 }
 
 header {
     grid-area: "header";
+    background-color: rgb(183, 62, 62);
+    border: 5px outset darkred;
+    color: snow;
+    font-family: "Permanent Marker";
+    font-size: 60px;
+    line-height: 20px;
 }
 
-.forumPostSection {
-    grid-area: "forumPostSection";
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(221, 83, 83);
+    border: 5px outset darkred;
+    font-family: "Handlee";
+}
+
+main h3 {
+    font-size: 35px;
+    margin: auto;
+}
+
+main a {
+    text-decoration: none;
+    color: inherit;
+}
+
+main p {
+    font-size: 30px;
+    margin-top: 10px;
+}
+
+#forumPostSection {
+    margin: 20px;
 }
 
 form{
     display: flex;
     flex-direction: column;
-    max-width: 500px;
     align-items: center;
+    
 }
 
-.allPosts {
-    grid-area: "allPosts";
+input {
+    background-color:rgb(237, 219, 192);
+    border: 2px inset darkred;
+    border-radius: 8px;
+    font-size: 18px;
+    width: 750px;
+    height: 25px;
+    font-size: 18px;
+    font-family: "Handlee";
+}
+
+input[type="submit"] {
+    color: white;
+    background-color: rgb(183, 62, 62);
+    width: 80px;
+}
+
+textarea {
+    background-color:rgb(237, 219, 192);
+    border: 2px inset darkred;
+    border-radius: 8px;
+    height: 100px;
+    width: 750px;
+    padding: 1px;
+    resize: none;
+    font-size: 18px;
+    font-family: "Handlee";
 }
 
 body {
     text-align: center;
-    display: grid;
-    grid-template: ". header ." 1fr 5fr 1fr
-                    ". forumPostSection ." 1fr 5fr 1fr
-                    " . allPosts ."1fr 5fr 1fr;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
 }
 
-
 .post {
+    background-color: rgb(219, 200, 172);
     border: 1px solid grey;
     border-radius: 50px;
     margin: 50px;
     padding: 10px 70px 10px 70px;
-    /* grid-template: ; */
-    /* width: 500px; */
+
+    border: 5px inset darkred;
 }
 
+.commentSection p {
+    margin: 2px;
+    font-size: 25px;
+}
 
 .commentSection h4 {
-    border-top: 2px dashed grey;
+    border-top: 2px dashed darkred;
+    font-size: 20px;
+    margin: 15px;
 }
-
-
 
 .emoji {
-    grid-area: "emoji";   
+    color: white; 
+    background-color: rgb(183, 62, 62);
+    border: 4px outset darkred;
+    font-family: "Handlee";
+    font-size: 20px;
+    display: flex;
+    flex-direction: row-reverse;
+    float: right;
 }
 
-#commentText {
-    height: 100px;
-    width: 400px;
-    padding: 1px;
-    resize: none;
+.emoji ul {
+    display: flex;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
 }
