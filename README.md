@@ -39,6 +39,7 @@ A simple blog posting website where users can post to the main feed & reacted to
 - Link to individual posts only works upon refresh for new posts
 - React button moves heading text when opens
 
+
 ## Wins and Challenges
 ### Wins
 

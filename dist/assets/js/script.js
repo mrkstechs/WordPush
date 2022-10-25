@@ -118,6 +118,7 @@ postComment.forEach(btn => {
 //     document.querySelector('ul').style.display = 'none';
 // })
 
+
 //Fetches all posts from the URL
 function getPosts () {
     fetch('http://localhost:3000')
