@@ -11,7 +11,7 @@ const postsData = require('./db/posts.json');
 const commentsData = require('./db/comments.json');
 const userData = require('./db/users.json');
 
-const { uniqueId, getDate } = require('./functions');
+const { uniqueId, getDate, updateJSON } = require('./functions');
 
 //Users should be able to view other peoples' entries. (2)
 //working so far
@@ -39,8 +39,10 @@ app.post('/posts', (req, res)=> {
     postToAdd.date = getDate();
 
     postsData.push(postToAdd);
+    updateJSON('db/posts.json', postsData);
 
     res.send(postsData);
+
 });
 
 //Users should be able to comment on other people’s entries. (5)
@@ -56,6 +58,7 @@ app.post('/comments', (req, res)=> {
     })
 
     postsData[findPostIndex].comments.push(comment);
+    updateJSON('db/posts.json', postsData);
 
     res.send(postsData);
 });
@@ -74,6 +77,7 @@ app.post('/emojis', (req, res)=> {
     let emojiObj = { type: emojiToAdd,
         count: 1 }
     emojiArray? emojiArray.count++ : (postsData[findPostIndex].reactionEmoji.push(emojiObj))
+    updateJSON('db/posts.json', postsData);
     res.send(postsData);
 });
 
