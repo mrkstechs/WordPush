@@ -125,8 +125,9 @@ function activateEmojiButtons(){
                             "emojiToAdd": emoji.textContent
                         }),
                         headers: {'Content-Type': 'application/json'}
-                    })}.then()
-                )
+                    }).then(window.location.reload(true));
+                }
+            )
             })
             
         }
