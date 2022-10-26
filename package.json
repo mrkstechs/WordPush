@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "build": "netlify-lambda build express",
-    "start": "nodemon server",
+    "start": "node server",
     "dev": "nodemon server/app",
     "test": "jest --wacthAll"
   },
