@@ -118,7 +118,7 @@ function activateEmojiButtons(){
                     console.log(emoji.id);
                     console.log(emoji.textContent)
                     console.log(emoji.parentElement.parentElement.parentElement.parentElement.id)
-                    fetch('http://localhost:3000/emojis', {
+                    fetch('https://wordpush.herokuapp.com/emojis', {
                         method: 'POST',
                         body: JSON.stringify({
                             "postId": emoji.parentElement.parentElement.parentElement.parentElement.id,
