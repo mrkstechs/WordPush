@@ -11,7 +11,17 @@ const renderOutput = (id, title) => {
     outputGIFs.insertAdjacentHTML('afterbegin', markup)
 }
 
+
+const clearGIFs = (gifs) => { 
+    for (let i = 0; i<gifs.length; i++) {
+        const gifToRemove = gifs.item(i);
+        gifToRemove.remove();
+    }
+}
+
 input.addEventListener('input', e => {
+    const allGIFs = outputGIFs.children;
+    clearGIFs(allGIFs);
     let query = e.target.value
     fetch(`https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q=${query}&limit=3`)
     .then(res => res.json())
