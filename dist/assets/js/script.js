@@ -27,7 +27,7 @@ toSendPost.addEventListener('submit',  e => {
     const userBody = document.getElementById('commentText').value;
 
     const userPost = new CreatePostEntry(userTitle, userBody)
-    fetch('http://localhost:3000/posts', {
+    fetch('https://wordpush.herokuapp.com/posts', {
         method: 'POST',
         body: JSON.stringify(userPost),
         headers: {'Content-Type': 'application/json'}
@@ -36,7 +36,7 @@ toSendPost.addEventListener('submit',  e => {
 
 //Fetches all posts from the URL
 function getPosts () {
-    fetch('http://localhost:3000/')
+    fetch('https://wordpush.herokuapp.com/')
         .then(resp => resp.json())
         .then(displayPosts)
 }
@@ -54,7 +54,7 @@ function displayPosts (data) {
         <div class="post" id="${post.postId}">
             <div class="postHeader">
                 <p>${post.date}</p>
-                <h3><a href="http://localhost:3000/${post.postId}">${post.title}</a></h3>
+                <h3><a href="https://wordpush.herokuapp.com/${post.postId}">${post.title}</a></h3>
                 <button class="emoji">React</button>
             </div>
             <p>${post.body}</p>
@@ -160,7 +160,7 @@ function activateCommentButtons() {
 
 function postComment (commentBody, postID) {
     const newComment = new CreateComment(commentBody, postID)
-    fetch('http://localhost:3000/comments', {
+    fetch('https://wordpush.herokuapp.com/comments', {
         method: 'POST',
         body: JSON.stringify(newComment),
         headers: {'Content-Type': 'application/json'}
