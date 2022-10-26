@@ -223,6 +223,15 @@ div.commentHeader p {
         font-size: 20px;
     }
     
+    .postHeader {
+        display: inline;
+    }
+
+    .postHeader ul li {
+        display: inline;
+        padding: 15px;
+    }
+
     .postHeader p {
         font-size: 12px;
     }
