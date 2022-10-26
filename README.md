@@ -29,6 +29,7 @@ A simple blog posting website where users can post to the main feed & reacted to
 - Larger styling done
 - Two Google fonts added and used throughout
 - Custom favicon added
+- Added responsiveness
 
 #### script.js
 - getPosts and displayPosts functions added
