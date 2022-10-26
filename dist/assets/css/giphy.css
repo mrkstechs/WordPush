@@ -1,0 +1,20 @@
+.giftBox{
+    padding: 1em;
+}
+
+.giftBox .boxHeader{
+    /* border: solid 1px yellow; */
+}
+
+#foundGIFs{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 1em;
+    padding: 1em;
+}
+
+#foundGIFs .gif:hover{
+    border: solid 5px purple;
+}
