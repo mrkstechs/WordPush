@@ -54,7 +54,7 @@ main p {
     margin: 20px;
 }
 
-form{
+#forumPostSection form{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -76,6 +76,18 @@ input[type="submit"] {
     color: white;
     background-color: rgb(183, 62, 62);
     width: 80px;
+    height: 28px;
+}
+
+.formButtons button{
+    border: 2px inset darkred;
+    border-radius: 8px;
+    font-family: "Handlee";
+    color: white;
+    background-color: rgb(183, 62, 62);
+    width: 50px;
+    height: 28px;
+    font-size: 18px;
 }
 
 textarea {
@@ -103,19 +115,39 @@ body {
     border-radius: 50px;
     margin: 50px;
     padding: 10px 70px 10px 70px;
-
     border: 5px inset darkred;
 }
+
+.postHeader{
+    display: flex;
+}
+
+.postHeader p {
+    font-size: 18px;
+}
+
+
+
+
+.commentHeader {
+    border-top: 2px dashed darkred;
+    margin: 15px;
+    height: 30px;
+}
+
+.commentHeader h4 {
+    font-size: 20px;
+}
+
+.commentHeader p {
+    float: left;
+    font-size: 15px;
+}
+
 
 .commentSection p {
     margin: 2px;
     font-size: 25px;
-}
-
-.commentSection h4 {
-    border-top: 2px dashed darkred;
-    font-size: 20px;
-    margin: 15px;
 }
 
 .emoji {
@@ -127,6 +159,7 @@ body {
     display: flex;
     flex-direction: row-reverse;
     float: right;
+    height: fit-content;
 }
 
 .emoji ul {
