@@ -1,6 +1,6 @@
 const postSection = document.querySelector('#allPosts');
 const toSendPost = document.querySelector('#forumPostSection');
-const emojiBtnArray = document.querySelectorAll('.postHeader > .emoji');
+// const emojiBtnArray = document.querySelectorAll('.postHeader > .emoji');
 // const postComment = document.querySelectorAll('.post');
 
 function CreatePostEntry(postTitle, postBody) {
@@ -33,69 +33,6 @@ toSendPost.addEventListener('submit',  e => {
         headers: {'Content-Type': 'application/json'}
     }).then(res => res.json()).then(data => console.log(data))
 });
-
-// for display only - not actual emojiId
-function setEmojiDisplayID(isNew){
-    // if(isNew) emojiBtnArray.length+1;
-    // need to auto update emoji array -_-
-    for(let i = 0; i < emojiBtnArray.length; i++){
-        emojiBtnArray[i].setAttribute("id", "post"+(i+1).toString());
-        console.log(emojiBtnArray[i]);
-    }
-    console.log(emojiBtnArray.length);
-}
-
-// when emoji react button is clicked, add emoji 
-// let clickOnce = false;
-// let prevPostClick = 0;
-// emojiBtnArray.forEach(btn => {
-//     // btn.setAttribute("id", "post"+count.toString());
-//     btn.addEventListener('click', e => {
-//         // reset clickOnce
-//         if(prevPostClick <= 0 || !clickOnce) prevPostClick = btn.id;
-//         // if not the same post's emoji clicked
-//         else if(prevPostClick.toString() !== e.target.id) {
-//             console.log('not same: '+prevPostClick, btn.id);
-//             if(clickOnce){
-//                 prevPostClick = btn.id;
-//                 document.getElementById('emoji-list').remove();
-//                 clickOnce = false; // close oldler post's emoji react
-//             }
-//         }
-//         clickOnce = !clickOnce; // reset button boolean each time clicked
-//         // console.log('emoji display on? '+clickOnce);
-//         if(clickOnce) {
-//             const markup = `<ul id='emoji-list'>
-//                 <li id="1">😀</li><li id="2">😥</li><li id="3">😮</li>
-//             </ul>`
-//             return document.getElementById(btn.id).insertAdjacentHTML("beforeend", markup);
-//         }
-//         document.getElementById('emoji-list').remove();
-//     })
-
-//     //when a emoji is selected
-//     //note: still need to test out fetch
-//     //when emoji react is clicked it counts that as event too, need to exclude
-//     //check out addEventListener 3rd parameter
-//     btn.addEventListener('click', e => {
-//         const emoji = e.target;
-//         // console.log(emoji);
-//         fetch('http://localhost:3000/emojis', {
-//             method: 'PATCH',
-//             "postId": emoji.id,
-//             "emojiToAdd": emoji.textContent
-//         })
-//     })
-//     count++;
-// })
-
-// emojiBtn.addEventListener('click', e => {
-//     clickOnce = !clickOnce; // reset button boolean each time clicked
-//     console.log('emoji display on? '+clickOnce);
-//     if(clickOnce) return document.querySelector('ul').style.display = 'block';
-//     document.querySelector('ul').style.display = 'none';
-// })
-
 
 //Fetches all posts from the URL
 function getPosts () {
@@ -134,12 +71,66 @@ function displayPosts (data) {
         const comments = post.comments
         const commentSection = document.querySelector(`#${commentSectionID}`)
 
-        displayComments(comments, commentSection);
+        displayComments(comments, commentSection)
+        displayEmojis(post.reactionEmoji, document.querySelector('.emoji'))
     }
     
     activateCommentButtons()
+    activateEmojiButtons()
 };
 
+function activateEmojiButtons(){
+    const emojiForm = document.querySelectorAll(`.postHeader > .emoji`)
+    let clickOnce = false;
+    let prevPostClick = 0;
+    let index = 1;
+
+    emojiForm.forEach(btn => {
+        btn.setAttribute("id", "post"+index.toString());
+
+        // display list of emojis
+        btn.addEventListener('click', e => {
+            // console.log('emoji display on? '+clickOnce);
+            clickOnce = !clickOnce;
+            // if(prevPostClick <= 0) prevPostClick = btn.id;
+            if(clickOnce) {
+                const markup = `<ul id='emoji-list'>
+                    <li id="1">😀</li><li id="2">😥</li><li id="3">😮</li>
+                </ul>`;
+                document.getElementById(btn.id).insertAdjacentHTML("beforeend", markup);
+            }
+            // check if prev emoji button not same as one clicked
+            else if((prevPostClick.toString() !== e.target.id) && clickOnce) {
+                console.log('not same: '+prevPostClick, e.target.id);
+                document.getElementById('emoji-list').remove();
+                clickOnce = false;
+            }
+            else document.getElementById('emoji-list').remove();
+        })
+        // when an emoji is selected
+        btn.addEventListener('click', e => {
+            const emoji = e.target;
+            console.log(emoji.textContent);
+            if(!emoji.id.includes('post')) {
+                fetch('http://localhost:3000/emojis', {
+                    // method: 'PATCH',
+                    "postId": emoji.id,
+                    "emojiToAdd": emoji.textContent
+                })
+            }
+        })
+        index++;
+    })
+}
+
+function displayEmojis (emojis, section) {
+    let markup = `<ul>`;
+    for (let i = 0; i < emojis.length; i++) {
+        markup += `<li>${emojis}</li>`
+    }
+    markup += `</ul>`
+    section.insertAdjacentHTML('afterend', markup);
+}
 
 function activateCommentButtons() {
     const commentForms = document.querySelectorAll(`.post form`)
@@ -179,4 +170,3 @@ function displayComments (comments, commentSection) {
 }
 
 getPosts();
-setEmojiDisplayID(false);
