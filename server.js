@@ -64,7 +64,9 @@ app.post('/comments', (req, res)=> {
 //peoples’ entries with a choice of 3 emojis. (7)
 app.post('/emojis', (req, res)=> {
     let postId = req.body.postId;
+    console.log(postId)
     let emojiToAdd = req.body.emojiToAdd;
+    console.log(emojiToAdd)
     const findPostIndex = postsData.findIndex((post)=> {
         return post.postId == postId;
     })

@@ -120,12 +120,12 @@ function activateEmojiButtons(){
                     console.log(emoji.parentElement.parentElement.parentElement.parentElement.id)
                     fetch('http://localhost:3000/emojis', {
                         method: 'POST',
-                        body: {
+                        body: JSON.stringify({
                             "postId": emoji.parentElement.parentElement.parentElement.parentElement.id,
-                            "type": emoji.textContent
-                        }
-                        
-                    })}
+                            "emojiToAdd": emoji.textContent
+                        }),
+                        headers: {'Content-Type': 'application/json'}
+                    })}.then()
                 )
             })
             
