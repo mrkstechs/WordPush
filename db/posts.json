@@ -26,7 +26,16 @@
               "username": "omarsland1y"
             }
           }],
-        "reactionEmoji": ["😀", "😥", "😮"],
+          "reactionEmoji": [
+            { "type": "😀",
+              "count": 3
+            },
+            { "type": "😥",
+            "count": 7
+            },
+            { "type": "😮",
+            "count": 1
+            }],
         "img": "../assets/testimg1.png"
       },
       {
@@ -56,7 +65,16 @@
               "username": "cdavydochkin2o"
             }
           }],
-        "reactionEmoji": ["😀"],
+          "reactionEmoji": [
+            { "type": "😀",
+              "count": 3
+            },
+            { "type": "😥",
+            "count": 7
+            },
+            { "type": "😮",
+            "count": 1
+            }],
         "img": "../assets/testimg1.png"
       },
       {
@@ -87,7 +105,16 @@
             }
           }],
           
-        "reactionEmoji": ["😥", "😮"],
+          "reactionEmoji": [
+            { "type": "😀",
+              "count": 3
+            },
+            { "type": "😥",
+            "count": 7
+            },
+            { "type": "😮",
+            "count": 1
+            }],
         "img": "../assets/testimg1.png"
       }
 ]

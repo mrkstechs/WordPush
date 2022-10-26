@@ -138,7 +138,7 @@ function activateEmojiButtons(){
 function displayEmojis (emojis, section) {
     let markup = `<ul>`;
     for (let i = 0; i < emojis.length; i++) {
-        markup += `<li>${emojis}</li>`
+        markup += `<li>${emojis[i].type} ${emojis[i].count}</li>`
     }
     markup += `</ul>`
     section.insertAdjacentHTML('afterend', markup);
