@@ -30,6 +30,9 @@ A simple blog posting website where users can post to the main feed & reacted to
 - getPosts and displayPosts functions added
 - displayComments function added
 - display emoji react button added
+- Can now add posts to server and site
+- Can now add comments to posts
+- Dates added
 
 ### Server
 
