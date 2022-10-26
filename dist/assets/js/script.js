@@ -36,7 +36,7 @@ toSendPost.addEventListener('submit',  e => {
 
 //Fetches all posts from the URL
 function getPosts () {
-    fetch('http://localhost:3000')
+    fetch('http://localhost:3000/')
         .then(resp => resp.json())
         .then(displayPosts)
 }

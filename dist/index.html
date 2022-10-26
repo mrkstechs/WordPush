@@ -7,7 +7,9 @@
     <title>wordpush</title>
     <link rel="icon" href="assets/images/favicon1.png" type="image/png">
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/giphy.css">
     <script defer src="assets/js/script.js"></script>
+    <script defer src="assets/js/giphy.js"></script>
 </head>
 <body>
     <header>
@@ -19,50 +21,19 @@
                 <input id="commentTitle" type="text" placeholder="Title your post!" required>
                 <textarea name="commentText" id="commentText" cols="30" rows="10" maxlength="300" placeholder="Add your own forum post!.." required></textarea>
                 <div class="formButtons">
-                    <button>Gif</button>
+                    <button id="addGif">Add Gif</button>
                     <input type="submit" value="Post!">
                 </div>
             </form>
-        </section>
-        <section id="allPosts">
-            <div class="post">
-                <div class="postHeader">
-                    <p>23/10/22</p>
-                    <h3>Example post title</h3>
-                    <button class="emoji">React</button>
-                </div>
-                <p>This is a bunch of text that a user may choose to type - up to a certain number of characters.</p>
-                <form action="">
-                    <input type="text" placeholder="Add a comment...">
-                    <input type="submit" value="Send">
+            <div class="giftBox">
+                <form class="boxHeader">
+                    <input type="text" placeholder="type to search e.g. birds" />
+                    <input type="submit" value="Find GIF">
                 </form>
-            </div>
-            <div class="post">
-                <div class="postHeader">
-                    <p>23/10/22</p>
-                    <h3>Example post title 2</h3>
-                    <button class="emoji">React</button>
-                </div>
-                <p>This is some more text that a user may choose to type. Idk what sort of stuff people would be saying.</p>
-                <form action="">
-                    <input type="text" placeholder="Add a comment...">
-                    <input type="submit" value="Send">
-                </form>
-            </div>
-            <div class="post">
-                <div class="postHeader">
-                    <p>23/10/22</p>
-                    <h3>Example post title 3</h3>
-                    <button class="emoji">React</button>
-                </div>
-                <p>BBC Goodfood vintage chocolate chip cookie recipe - STEP 1Heat the oven to 190C/fan170C/gas 5 and line two baking sheets with non-stick baking paper. STEP 2
-                    Put 150g softened salted butter, 80g light brown muscovado sugar and 80g granulated sugar into a bowl and beat until creamy.</p>
-                <form action="">                 
-                    <input type="text" placeholder="Add a comment...">
-                    <input type="submit" value="Send">
-                </form>
+                <div id="foundGIFs"></div>
             </div>
         </section>
+        <section id="allPosts"></section>
     </main>
 </body>
 </html>
