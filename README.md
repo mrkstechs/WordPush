@@ -22,9 +22,13 @@ A simple blog posting website where users can post to the main feed & reacted to
 ### Client
 #### index.html
 - Basic structure and layout added
+- Post input is now textarea instead of text input
 
 #### style.css
 - Minimum styling done
+- Larger styling done
+- Two Google fonts added and used throughout
+- Custom favicon added
 
 #### script.js
 - getPosts and displayPosts functions added
@@ -32,7 +36,8 @@ A simple blog posting website where users can post to the main feed & reacted to
 - display emoji react button added
 - Can now add posts to server and site
 - Can now add comments to posts
-- Dates added
+- Dates added to posts and comments
+
 
 ### Server
 
