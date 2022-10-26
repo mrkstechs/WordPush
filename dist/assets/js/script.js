@@ -31,7 +31,7 @@ toSendPost.addEventListener('submit',  e => {
         method: 'POST',
         body: JSON.stringify(userPost),
         headers: {'Content-Type': 'application/json'}
-    }).then(res => res.json()).then(data => console.log(data))
+    })
 });
 
 //Fetches all posts from the URL
@@ -98,6 +98,7 @@ function activateEmojiButtons(){
                     <li id="1">😀</li><li id="2">😥</li><li id="3">😮</li>
                 </ul>`;
                 document.getElementById(btn.id).insertAdjacentHTML("beforeend", markup);
+                addEmojiListeners(btn.firstElementChild);
             }
             // check if prev emoji button not same as one clicked
             else if((prevPostClick.toString() !== e.target.id) && clickOnce) {
@@ -108,17 +109,28 @@ function activateEmojiButtons(){
             else document.getElementById('emoji-list').remove();
         })
         // when an emoji is selected
-        btn.addEventListener('click', e => {
-            const emoji = e.target;
-            console.log(emoji.id);
-            if(!emoji.id.includes('post')) {
-                fetch('http://localhost:3000/emojis', {
-                    method: 'POST',
-                    "postId": emoji.id,
-                    "emojiToAdd": emoji.textContent
-                })
-            }
-        })
+        function addEmojiListeners(list) {
+            console.log(list)
+            emojis = list.querySelectorAll('li')
+            console.log(emojis)
+            emojis.forEach(emoji => {
+                emoji.addEventListener('click', e => {
+                    console.log(emoji.id);
+                    console.log(emoji.textContent)
+                    console.log(emoji.parentElement.parentElement.parentElement.parentElement.id)
+                    fetch('http://localhost:3000/emojis', {
+                        method: 'POST',
+                        body: {
+                            "postId": emoji.parentElement.parentElement.parentElement.parentElement.id,
+                            "type": emoji.textContent
+                        }
+                        
+                    })}
+                )
+            })
+            
+        }
+        
         index++;
     })
 }

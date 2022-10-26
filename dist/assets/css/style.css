@@ -23,6 +23,8 @@ header {
     color: snow;
     font-family: "Permanent Marker";
     font-size: 60px;
+}
+header h1{
     line-height: 20px;
 }
 

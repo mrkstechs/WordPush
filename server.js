@@ -63,14 +63,17 @@ app.post('/comments', (req, res)=> {
 //Users should be able to react to other 
 //peoples’ entries with a choice of 3 emojis. (7)
 app.post('/emojis', (req, res)=> {
-
     let postId = req.body.postId;
     let emojiToAdd = req.body.emojiToAdd;
     const findPostIndex = postsData.findIndex((post)=> {
-        return post.postId === postId;
+        return post.postId == postId;
     })
-
-    postsData[findPostIndex].reactionEmoji.push(emojiToAdd)
+    const emojiArray = postsData[findPostIndex].reactionEmoji.find((emoji)=> {
+        return emoji.type === emojiToAdd;
+    })
+    let emojiObj = { type: emojiToAdd,
+        count: 1 }
+    emojiArray? emojiArray.count++ : (postsData[findPostIndex].reactionEmoji.push(emojiObj))
     res.send(postsData);
 });
 
