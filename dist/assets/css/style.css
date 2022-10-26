@@ -126,27 +126,24 @@ body {
     font-size: 18px;
 }
 
-
-
-
-.commentHeader {
+.commentSection h4 {
     border-top: 2px dashed darkred;
-    margin: 15px;
-    height: 30px;
+    margin: 10px;
+    padding: 5px;
+    height: 10px;
+    font-size: 16px;
+    font-weight: 100;
 }
 
-.commentHeader h4 {
-    font-size: 20px;
-}
-
-.commentHeader p {
-    float: left;
-    font-size: 15px;
+div.commentHeader p {
+   
+    font-size: 18px;
+    padding: 0px;
 }
 
 
 .commentSection p {
-    margin: 2px;
+    margin: 0px;
     font-size: 25px;
 }
 
