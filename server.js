@@ -128,6 +128,7 @@ app.delete('/posts', (req, res)=> {
     });
 
     const removePost = postsData.splice(findPostIndex, 1);
+    updateJSON('db/posts.json', postsData);
     res.send(postsData);
 });
 
@@ -150,6 +151,7 @@ app.delete('/comments', (req, res)=> {
     const removeComment = postsData[findPostIndex].comments.splice(findCommentIndex , 1);
     console.log(removeComment);
 
+    updateJSON('db/posts.json', postsData);
     res.send(postsData);
 });
 
