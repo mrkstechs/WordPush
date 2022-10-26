@@ -5,6 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server",
+    "bulid": "node server",
     "test": "jest --wacthAll"
   },
   "repository": {
