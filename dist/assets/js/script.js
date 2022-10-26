@@ -55,7 +55,7 @@ function displayPosts (data) {
             <div class="postHeader">
                 <p>${post.date}</p>
                 <h3><a href="http://localhost:3000/${post.postId}">${post.title}</a></h3>
-                <button class="emoji">Emoji react</button>
+                <button class="emoji">React</button>
             </div>
             <p>${post.body}</p>
             <form action="" id="${commentSubmitID}">
