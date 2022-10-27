@@ -12,8 +12,20 @@ const renderOutput = (id, title) => {
 }
 
 const clearGIFs = () => { 
-    let allGIFs = document.querySelectorAll('.gif')
+    let allGIFs = document.querySelectorAll('#foundGIFs .gif')
     allGIFs.forEach(gif => outputGIFs.removeChild(gif))
+}
+
+const selectGIF = node => {
+    let clone = node.parentNode.cloneNode(true)
+    const selectedGif = document.querySelector('#selectedGif')
+    if(!selectedGif.hasChildNodes()){
+        selectedGif.appendChild(clone)
+    } else {
+        let oldGif = selectedGif.children
+        selectedGif.removeChild(oldGif.item(0))
+        selectedGif.appendChild(clone)
+    }
 }
 
 input.addEventListener('input', e => {
@@ -33,6 +45,12 @@ input.addEventListener('input', e => {
                 }
             }
         })    
+    })
+    .then(() => {
+        let allGIFs = document.querySelectorAll('.gif') // making var again because these nodes can be added or removed from dom at anytime
+        allGIFs.forEach(gif => {
+            gif.addEventListener('click', e => selectGIF(e.target))
+        })
     })
     .finally(() => {
         if(!query){

@@ -4,9 +4,11 @@
   "description": "Project Week Project at FutureProof by Team Matcha",
   "main": "server.js",
   "scripts": {
+    "test": "jest --watchAll",
+    "coverage": "jest --coverage",
     "start": "node server",
     "bulid": "node server",
-    "test": "jest --wacthAll"
+    "dev": "nodemon server"
   },
   "repository": {
     "type": "git",
@@ -19,13 +21,25 @@
     "url": "https://github.com/mrkstechs/WordPush/issues"
   },
   "homepage": "https://github.com/mrkstechs/WordPush#readme",
+  "jest": {
+    "automock": false,
+    "setupFiles": [
+      "./setupJest.js"
+    ]
+  },
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
-    "moment": "^2.29.4"
+    "jsdom": "^20.0.1",
+    "moment": "^2.29.4",
+    "node-fetch": "^3.2.10"
   },
   "devDependencies": {
+    "browserify": "^17.0.0",
+    "jest": "^29.2.2",
+    "jest-environment-jsdom": "^29.2.2",
+    "jest-fetch-mock": "^3.0.3",
     "nodemon": "^2.0.20"
   }
 }

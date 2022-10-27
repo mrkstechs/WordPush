@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/giphy.css">
     <script defer src="assets/js/script.js"></script>
-    <script defer src="assets/js/giphy.js"></script>
+    <!-- <script defer src="assets/js/giphy.js"></script> -->
 </head>
 <body>
     <header>
@@ -19,7 +19,10 @@
         <section id="forumPostSection">
             <form action="">
                 <input id="commentTitle" type="text" placeholder="Title your post!" required>
-                <textarea name="commentText" id="commentText" cols="30" rows="10" maxlength="300" placeholder="Add your own forum post!.." required></textarea>
+                <div class="postBody">
+                    <textarea name="commentText" id="commentText" cols="30" rows="10" maxlength="300" placeholder="Add your own forum post!.." required></textarea>
+                    <div id="selectedGif"></div>
+                </div>
                 <div class="formButtons">
                     <button id="addGif">Add Gif</button>
                     <input type="submit" value="Post!">

@@ -3,10 +3,12 @@ const toSendPost = document.querySelector('#forumPostSection');
 // const emojiBtnArray = document.querySelectorAll('.postHeader > .emoji');
 // const postComment = document.querySelectorAll('.post');
 
-function CreatePostEntry(postTitle, postBody) {
+
+function CreatePostEntry(postTitle, postBody, postGif) {
     this.postId = "";
     this.title = postTitle;
     this.body = postBody;
+    this.gif = postGif
     this.userId;
     this.comments = [];
     this.reactionEmoji = [];
@@ -26,8 +28,9 @@ toSendPost.addEventListener('submit',  e => {
 
     const userTitle = document.getElementById('commentTitle').value;
     const userBody = document.getElementById('commentText').value;
-    
-    const userPost = new CreatePostEntry(userTitle, userBody)
+    const gif = document.querySelector('#selectedGif .gif img').attributes[0].value
+
+    const userPost = new CreatePostEntry(userTitle, userBody, gif)
     fetch('https://wordpush.herokuapp.com/posts', {
         method: 'POST',
         body: JSON.stringify(userPost),
@@ -48,7 +51,7 @@ toSendPost.addEventListener('submit',  e => {
 
 //Fetches all posts from the URL
 function getPosts () {
-    fetch('https://wordpush.herokuapp.com/')
+   fetch('https://wordpush.herokuapp.com/')
         .then(resp => resp.json())
         .then(displayPosts)
 }
@@ -70,6 +73,9 @@ function displayPosts (data) {
                 <button class="emoji">React</button>
             </div>
             <p>${post.body}</p>
+            ${post.gif ? (`<div class="gif">
+            <img src="${post.gif ?? post.gif}" /> 
+        </>`) : ''}
             <form action="" id="${commentSubmitID}">
                 <input type="text" placeholder="Add a comment..." required>
                 <input type="submit" value="Send">
@@ -193,9 +199,10 @@ function displayComments (comments, commentSection) {
 
 }
 
-getPosts();
+//getPosts();
 
 module.exports = {
-    getPosts, displayPosts, activateEmojiButtons, displayEmojis,
-    activateCommentButtons, postComment
+    getPosts, 
+    displayPosts, activateEmojiButtons, displayEmojis,
+    activateCommentButtons, postComment, CreatePostEntry
 }
