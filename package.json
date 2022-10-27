@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node server",
     "bulid": "node server",
+    "dev": "nodemon server",
     "test": "jest --wacthAll"
   },
   "repository": {
