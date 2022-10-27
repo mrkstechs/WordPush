@@ -6,27 +6,63 @@ beforeEach(() => { fetch.resetMocks() })
 const { getPosts, 
         displayPosts, 
         activateEmojiButtons, 
-        CreatePostEntry } = require("./dist/assets/js/script");
+        CreatePostEntry,
+        CreateComment } = require("./dist/assets/js/script");
 
-describe("incrementCount", () => {
+describe("Functions exist", () => {
 
-    test('it exists', () => {
+    test('getPosts exists', () => {
         expect(getPosts).toBeDefined();
     })
 
 
-    test('it exists', () => {
+    test('displayPosts exists', () => {
         expect(displayPosts).toBeDefined();
     })
 
-    test('it exists', () => {
+    test('activateEmojiButtons exists', () => {
         expect(activateEmojiButtons).toBeDefined();
     })
 
-    test('it exists', () => {
+    test('CreatePostEntry exists', () => {
         expect(CreatePostEntry).toBeDefined();
     })
 
 
 
-  });
+    });
+
+describe ('Object Creators', () => {
+    test ('Properly creates post entry object', () => {
+        let CorrectPostEntry = {
+            postId: "",
+            title: 'Test Title',
+            body: 'Test Body',
+            gif: undefined, 
+            userId: undefined, 
+            comments: [],
+            reactionEmoji: [],
+        }
+        expect(new CreatePostEntry('Test Title', 'Test Body')).toEqual(CorrectPostEntry);
+})
+
+    test ('Properly creates comment object', () => {
+        let CorrectComment = {
+            commentId: "",
+            body: 'Test comment',
+            postId: 3,
+            user: {}
+        };
+        expect(new CreateComment('Test comment', 3)).toEqual(CorrectComment);
+    })
+});
+
+
+describe ('Is correctly display?', () => {
+    test('Post properly displayed', () => {
+        
+    })
+})
+
+
+
