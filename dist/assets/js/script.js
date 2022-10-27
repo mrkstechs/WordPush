@@ -35,17 +35,7 @@ toSendPost.addEventListener('submit',  e => {
         method: 'POST',
         body: JSON.stringify(userPost),
         headers: {'Content-Type': 'application/json'}
-    }).then(res => res.json()).then(data => console.log(data))
-        const markup = `
-        <div class="post">
-            <button class="emoji">Emoji react</button>
-            <h3>${userTitle}</h3>
-            <p>${userBody}</p>
-            <input type="text" placeholder="Add a comment...">
-            <input type="submit" value="Send">
-        </div>
-        `;
-        postSection.insertAdjacentHTML('afterbegin', markup);
+    })
 });
 
 
@@ -59,7 +49,7 @@ function getPosts () {
 
 //Displays all posts - variables will need renamed to fit actual data
 function displayPosts (data) {
-    console.log(data);
+
     for (let i = 0; i < data.length; i++) {
         console.log('looped')
         const post = data[i];
@@ -91,6 +81,8 @@ function displayPosts (data) {
 
         displayComments(comments, commentSection)
         displayEmojis(post.reactionEmoji, document.querySelector('.emoji'))
+
+        return markup
     }
     
     activateCommentButtons()
@@ -203,6 +195,6 @@ function displayComments (comments, commentSection) {
 
 module.exports = {
     getPosts, 
-    displayPosts, activateEmojiButtons, displayEmojis,
-    activateCommentButtons, postComment, CreatePostEntry
+    displayPosts, displayComments, activateEmojiButtons, displayEmojis,
+    activateCommentButtons, postComment, CreatePostEntry, CreateComment
 }
