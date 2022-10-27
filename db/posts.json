@@ -25,19 +25,21 @@
           "id": 71,
           "username": "omarsland1y"
         }
-      },
-      {
-        "commentId": 3,
-        "body": "lets hope it works like intended now",
-        "date": "26/10/2022",
-        "postId": 1,
-        "user": null
       }
     ],
     "reactionEmoji": [
-      "😀",
-      "😥",
-      "😮"
+      {
+        "type": "😀",
+        "count": 2
+      },
+      {
+        "type": "😥",
+        "count": 4
+      },
+      {
+        "type": "😮",
+        "count": 1
+      }
     ],
     "img": "../assets/testimg1.png"
   },
@@ -70,7 +72,18 @@
       }
     ],
     "reactionEmoji": [
-      "😀"
+      {
+        "type": "😀",
+        "count": 2
+      },
+      {
+        "type": "😥",
+        "count": 9
+      },
+      {
+        "type": "😮",
+        "count": 6
+      }
     ],
     "img": "../assets/testimg1.png"
   },
@@ -100,19 +113,39 @@
           "id": 82,
           "username": "kogilvy29"
         }
-      },
-      {
-        "commentId": 3,
-        "body": "lets hope it works like intended now",
-        "date": "26/10/2022",
-        "postId": 3,
-        "user": null
       }
     ],
     "reactionEmoji": [
-      "😥",
-      "😮"
+      {
+        "type": "😀",
+        "count": 9
+      },
+      {
+        "type": "😥",
+        "count": 2
+      },
+      {
+        "type": "😮",
+        "count": 1
+      }
     ],
     "img": "../assets/testimg1.png"
+  },
+  {
+    "postId": "l9pwluj3n1ehzny17gl",
+    "title": "iiulyfr",
+    "body": "[oj nipun]i0h 0jp;j\nM~",
+    "comments": [],
+    "reactionEmoji": [
+      {
+        "type": "😀",
+        "count": 1
+      },
+      {
+        "type": "😥",
+        "count": 1
+      }
+    ],
+    "date": "26/10/2022"
   }
 ]

@@ -1,5 +1,5 @@
 :root {
-    background-color: rgb(219, 200, 172);
+    background-color: darkred;
 }
 
 @font-face {
@@ -23,6 +23,8 @@ header {
     color: snow;
     font-family: "Permanent Marker";
     font-size: 60px;
+}
+header h1{
     line-height: 20px;
 }
 
@@ -66,9 +68,8 @@ input {
     border: 2px inset darkred;
     border-radius: 8px;
     font-size: 18px;
-    width: 750px;
+    width: 66.6vw;
     height: 25px;
-    font-size: 18px;
     font-family: "Handlee";
 }
 
@@ -95,7 +96,7 @@ textarea {
     border: 2px inset darkred;
     border-radius: 8px;
     height: 100px;
-    width: 750px;
+    width: 66.6vw;
     padding: 1px;
     resize: none;
     font-size: 18px;
@@ -113,13 +114,15 @@ body {
     background-color: rgb(219, 200, 172);
     border: 1px solid grey;
     border-radius: 50px;
-    margin: 50px;
+    margin-top: 50px;
+    width: 80vw;
     padding: 10px 70px 10px 70px;
     border: 5px inset darkred;
 }
 
 .postHeader{
     display: flex;
+    justify-content: center;
 }
 
 .postHeader p {
@@ -131,22 +134,21 @@ body {
 
 .commentHeader {
     border-top: 2px dashed darkred;
-    margin: 15px;
-    height: 30px;
+    margin: 10px;
+    padding: 5px;
+    height: 10px;
+    font-size: 16px;
+    font-weight: 100;
 }
 
-.commentHeader h4 {
-    font-size: 20px;
-}
-
-.commentHeader p {
-    float: left;
-    font-size: 15px;
+div.commentHeader p {
+    font-size: 18px;
+    padding: 0px;
 }
 
 
 .commentSection p {
-    margin: 2px;
+    margin: 0px;
     font-size: 25px;
 }
 
@@ -167,4 +169,72 @@ body {
     list-style-type: none;
     margin: 0;
     padding: 0;
+}
+
+.postHeader ul {
+    list-style-type: none;
+
+}
+
+@media only screen and (max-width: 1030px) {
+    .post {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+    
+    .post h3{
+        font-size: 28px;
+        margin-left: 5vw;
+        margin-right: 5vw;
+    }
+
+    .post p{
+        font-size: 28px;
+    }
+
+    .postHeader p {
+        font-size: 16px;
+    }
+    
+    header {
+        font-size: 10vw;
+    }
+
+}
+
+@media only screen and (max-width: 600px) {
+    .post h3{
+        font-size: 26px;
+    }
+
+    .post p{
+        font-size: 22px;
+    }
+
+    .postHeader p {
+        font-size: 14px;
+    }
+}
+
+@media only screen and (max-width: 440px) {
+    .post h3{
+        font-size: 20px;
+    }
+    
+    .post p{
+        font-size: 20px;
+    }
+    
+    .postHeader {
+        display: inline;
+    }
+
+    .postHeader ul li {
+        display: inline;
+        padding: 15px;
+    }
+
+    .postHeader p {
+        font-size: 12px;
+    }
 }

@@ -48,4 +48,9 @@ const updatePostComments = (filePath, posts, postId, payload, response) => {
   .catch(err => console.error(err))
 }
 
-module.exports= { uniqueId, getDate, readData, updatePostComments }
+const updateJSON = (filePath, data) => {
+  data = JSON.stringify(data, null, 2)
+  fs.writeFile(filePath, data, err => err ?? console.log(err))
+}
+
+module.exports= { uniqueId, getDate, readData, updatePostComments, updateJSON }
