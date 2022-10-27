@@ -28,8 +28,7 @@ toSendPost.addEventListener('submit',  e => {
 
     const userTitle = document.getElementById('commentTitle').value;
     const userBody = document.getElementById('commentText').value;
-    const gif = document.querySelector('#selectedGif .gif')
-    console.log(typeof gif, gif)
+    const gif = document.querySelector('#selectedGif .gif img').attributes[0].value
 
     const userPost = new CreatePostEntry(userTitle, userBody, gif)
     fetch('https://wordpush.herokuapp.com/posts', {
@@ -63,8 +62,9 @@ function displayPosts (data) {
                 <button class="emoji">React</button>
             </div>
             <p>${post.body}</p>
-            ${post.gif ?? post.gif}
-            ${console.log(post.gif)}
+            ${post.gif ? (`<div class="gif">
+            <img src="${post.gif ?? post.gif}" /> 
+        </>`) : ''}
             <form action="" id="${commentSubmitID}">
                 <input type="text" placeholder="Add a comment..." required>
                 <input type="submit" value="Send">
