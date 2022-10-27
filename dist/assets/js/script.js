@@ -5,10 +5,11 @@ const toSendPost = document.querySelector('#forumPostSection');
 // const postComment = document.querySelectorAll('.post');
 
 
-function CreatePostEntry(postTitle, postBody) {
+function CreatePostEntry(postTitle, postBody, postGif) {
     this.postId = "";
     this.title = postTitle;
     this.body = postBody;
+    this.gif = postGif
     this.userId;
     this.comments = [];
     this.reactionEmoji = [];
@@ -27,8 +28,10 @@ toSendPost.addEventListener('submit',  e => {
 
     const userTitle = document.getElementById('commentTitle').value;
     const userBody = document.getElementById('commentText').value;
+    const gif = document.querySelector('#selectedGif .gif')
+    console.log(typeof gif, gif)
 
-    const userPost = new CreatePostEntry(userTitle, userBody)
+    const userPost = new CreatePostEntry(userTitle, userBody, gif)
     fetch('https://wordpush.herokuapp.com/posts', {
         method: 'POST',
         body: JSON.stringify(userPost),
@@ -60,6 +63,8 @@ function displayPosts (data) {
                 <button class="emoji">React</button>
             </div>
             <p>${post.body}</p>
+            ${post.gif ?? post.gif}
+            ${console.log(post.gif)}
             <form action="" id="${commentSubmitID}">
                 <input type="text" placeholder="Add a comment..." required>
                 <input type="submit" value="Send">
