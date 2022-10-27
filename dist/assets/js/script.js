@@ -1,7 +1,9 @@
 const postSection = document.querySelector('#allPosts');
 const toSendPost = document.querySelector('#forumPostSection');
+
 // const emojiBtnArray = document.querySelectorAll('.postHeader > .emoji');
 // const postComment = document.querySelectorAll('.post');
+
 
 function CreatePostEntry(postTitle, postBody) {
     this.postId = "";

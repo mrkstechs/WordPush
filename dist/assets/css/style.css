@@ -129,7 +129,10 @@ body {
     font-size: 18px;
 }
 
-.commentSection h4 {
+
+
+
+.commentHeader {
     border-top: 2px dashed darkred;
     margin: 10px;
     padding: 5px;
@@ -139,7 +142,6 @@ body {
 }
 
 div.commentHeader p {
-   
     font-size: 18px;
     padding: 0px;
 }
@@ -235,5 +237,4 @@ div.commentHeader p {
     .postHeader p {
         font-size: 12px;
     }
-
 }

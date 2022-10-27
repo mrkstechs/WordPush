@@ -1,94 +1,74 @@
 const path = require('path')
 const express =  require('express');
-const cors = require('cors')
 
-const port = process.env.PORT || 3000;
-const apiRouter = require('./routes/api')
+const { readData, updatePostComments } = require('../functions');
 
-const app = express();
+const postsDataPath = path.join(__dirname, '../db/posts.json');
+const postsData = require('../db/posts.json');
+const commentsData = require('../db/comments.json');
+const userData = require('../db/users.json');
 
-app.use(express.json())
-app.use(express.urlencoded());
-app.use(cors());
-app.use(express.static(path.join(__dirname, './dist/assets')))
+const router = express.Router()
 
-const postsData = require('./db/posts.json');
-const commentsData = require('./db/comments.json');
-const userData = require('./db/users.json');
-
-const { uniqueId, getDate, updateJSON } = require('./functions');
-
-//Users should be able to view other peoples' entries. (2)
-//working so far
-app.get('/', (req, res)=> {
-    console.log('/')
+router.get('/posts', (req, res) => {
     res.send(postsData);
-});
+})
 
-app.get('/:id', (req, res)=> {
+router.get('/posts/:id', (req, res)=> {
     const postIdSearch = postsData.findIndex(post => {
         return post.postId.toString() === req.params.id;
     })
     console.log(postIdSearch);
     //if(!postIdSearch) return res.status(404).send('this post does not exist')
     res.send(postsData[postIdSearch])
-});
-
+})
 
 //Users should be able to anonymously post journal entries. (3)
 //Working so far with req.body
-app.post('/posts', (req, res)=> {
+router.post('/posts', (req, res)=> {
     
     let postToAdd = req.body;
     postToAdd.postId = uniqueId();
     postToAdd.date = getDate();
 
     postsData.push(postToAdd);
-    updateJSON('db/posts.json', postsData);
 
     res.send(postsData);
+})
 
-});
-
-//Users should be able to comment on other people’s entries. (5)
-app.post('/comments', (req, res)=> {
-
-    let postId = req.body.postId;
-    let comment = req.body;
-    comment.commentId = uniqueId();
-    comment.date = getDate();
-
-    const findPostIndex = postsData.findIndex((post)=> {
-        return post.postId == postId;
+// User should be able to comment directly on post
+router.post('/posts/:id/comments', (req, res) => {
+    readData(postsDataPath, (err, posts) => {
+        if(err) console.log(err)
+        const {postId} = req.body
+        updatePostComments(postsDataPath, posts, postId, req.body, res)
     })
-
-    postsData[findPostIndex].comments.push(comment);
-    updateJSON('db/posts.json', postsData);
-
-    res.send(postsData);
-});
+})
 
 //Users should be able to react to other 
 //peoples’ entries with a choice of 3 emojis. (7)
-app.post('/emojis', (req, res)=> {
+router.post('/emojis', (req, res)=> {
+
     let postId = req.body.postId;
     let emojiToAdd = req.body.emojiToAdd;
     const findPostIndex = postsData.findIndex((post)=> {
-        return post.postId == postId;
+        return post.postId === postId;
     })
+
     const emojiArray = postsData[findPostIndex].reactionEmoji.find((emoji)=> {
         return emoji.type === emojiToAdd;
     })
+
     let emojiObj = { type: emojiToAdd,
         count: 1 }
+
     emojiArray? emojiArray.count++ : (postsData[findPostIndex].reactionEmoji.push(emojiObj))
-    updateJSON('db/posts.json', postsData);
+ 
     res.send(postsData);
 });
 
 //user can update post
-app.patch('/posts', (req, res)=> {
-    
+router.put('/posts/:id', (req, res) => {
     let postId = req.body.postId;
     const findPostIndex = postsData.findIndex((post)=> {
         return post.postId === postId;
@@ -98,10 +78,10 @@ app.patch('/posts', (req, res)=> {
     console.log(postsData[findPostIndex]);
 
     res.send(postsData);
-});
+})
 
 //user can update comment
-app.patch('/comments', (req, res)=> {
+router.patch('/comments/:id', (req, res)=> {
     
     let commentToUpdate = req.body
     console.log(commentToUpdate);
@@ -121,11 +101,10 @@ app.patch('/comments', (req, res)=> {
     console.log(updateComment);
 
     res.send(postsData);
-});
-
+})
 
 //user can delete post
-app.delete('/posts', (req, res)=> {
+router.delete('/posts/:id', (req, res) => {
     
     let postId = req.body.postId;
     const findPostIndex = postsData.findIndex((post)=> {
@@ -133,13 +112,11 @@ app.delete('/posts', (req, res)=> {
     });
 
     const removePost = postsData.splice(findPostIndex, 1);
-    updateJSON('db/posts.json', postsData);
     res.send(postsData);
-});
+})
 
 //user can delete comment
-app.delete('/comments', (req, res)=> {
-
+router.delete('/comments/:id', (req, res) => {
     let commentToDelete = req.body
     console.log(commentToDelete);
     const findPostIndex = postsData.findIndex((post)=> {
@@ -156,11 +133,7 @@ app.delete('/comments', (req, res)=> {
     const removeComment = postsData[findPostIndex].comments.splice(findCommentIndex , 1);
     console.log(removeComment);
 
-    updateJSON('db/posts.json', postsData);
     res.send(postsData);
-});
-
-app.listen(port, ()=> {
-    console.log(`listening on port ${port}`)
 })
 
+module.exports = router

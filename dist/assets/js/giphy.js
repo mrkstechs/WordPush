@@ -11,7 +11,6 @@ const renderOutput = (id, title) => {
     outputGIFs.insertAdjacentHTML('afterbegin', markup)
 }
 
-
 const clearGIFs = () => { 
     let allGIFs = document.querySelectorAll('.gif')
     allGIFs.forEach(gif => outputGIFs.removeChild(gif))
