@@ -2,6 +2,7 @@ global.fetch = require('jest-fetch-mock');
 beforeEach(() => { fetch.resetMocks() })
 
 const mockGetPosts = jest.fn(() => {
+    console.log("run once?")
     return Promise.resolve({
         postId: 1,
         title: "His mother had always taught him",
@@ -37,9 +38,9 @@ const mockGetPosts = jest.fn(() => {
           ],
           "img": "../assets/testimg1.png"
     });
-    
 })
 
+//func addEmojiListeners
 const mockAddEmoji = jest.fn( () => {
     fetch('https://wordpush.herokuapp.com/emojis', {
         method: 'POST',
@@ -49,37 +50,47 @@ const mockAddEmoji = jest.fn( () => {
         }),
         headers: {'Content-Type': 'application/json'}
     })
-    // .then(res => res.json).then(data => console.log(data))
+    // return Promise.resolve({ });
 
 })
 
-
-
 describe('fetch-script.js', () => {
     describe('mockGetPosts', () => {
-        it('mockGetPosts is id', async() => {
+        it('required fields are filled', () => {
             mockGetPosts().then(obj => {
-                  expect(obj.postId).toBe(1) 
+                expect(obj.postId).not.toEqual("undefined")
+                expect(obj.title).not.toEqual("undefined")
+                expect(obj.body).not.toEqual("undefined")
+                expect(obj.date).not.toEqual("undefined")
+                expect(obj.userId).not.toEqual("undefined")
+            })
+        })
+
+        it('mockGetPosts id is 1', () => {
+            mockGetPosts().then(obj => {
+                expect(obj.postId).toBe(1) 
             }) 
             
         })
 
-        it('mockGetPosts has a title', async() => {
+        it('mockGetPosts has a title', () => {
             mockGetPosts().then(obj => {
                 expect(obj.title).toBe("His mother had always taught him")
             })
-            
-
         })
 
-        
+        // throw error/checkers
     })
 
-    describe.skip('mockAddEmoji', () => {
+    describe('mockAddEmoji', () => {
         it('mockAddEmoji accessed', () => {
             expect(mockAddEmoji).toBeDefined()
         })
-        // let result = mockAddEmoji
+        
+        // it('handle exceptions with null', () => {
+        //     mockAddEmoji.mockImplementationOnce(() => Promise.reject("fail"))
+        //     expect(mockAddEmoji).toHaveBeenCalledWith('https://wordpush.herokuapp.com/emojis')
+        // })
         
     })
 })

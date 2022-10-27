@@ -1,13 +1,3 @@
-import {activateEmojiButtons, displayEmojis} from './dist/assets/js/script'
-// import mockScript from './dist/assets/js/script';
-
-jest.mock('./dist/assets/js/script');
-
-
-// describe('activateEmojiButtons', () => {
-
-// })
-
 let reactionEmoji = (
     { "type": "😀", "count": 9 },
     { "type": "😥", "count": 2 },
@@ -33,4 +23,6 @@ describe('displayEmojis of a post', () => {
         <li>😀 9</li><li>😥 2</li><li>😮 1</li>
         </ul>`) 
     })
+
+    
 })
