@@ -62,6 +62,18 @@ main p {
     align-items: center;
     
 }
+#forumPostSection .postBody{
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+#selectedGif.active{
+    width: 33%;
+    background-color:rgb(237, 219, 192);
+    border: 2px inset darkred;
+    border-radius: 8px;
+}
 
 input {
     background-color:rgb(237, 219, 192);
@@ -89,6 +101,10 @@ input[type="submit"] {
     width: 50px;
     height: 28px;
     font-size: 18px;
+}
+
+#addGif{
+    width: auto;
 }
 
 textarea {
