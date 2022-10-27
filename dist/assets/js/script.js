@@ -40,7 +40,7 @@ toSendPost.addEventListener('submit',  e => {
 
 //Fetches all posts from the URL
 function getPosts () {
-    fetch('https://wordpush.herokuapp.com/')
+   fetch('https://wordpush.herokuapp.com/')
         .then(resp => resp.json())
         .then(displayPosts)
 }
@@ -187,4 +187,10 @@ function displayComments (comments, commentSection) {
     }
 }
 
-getPosts();
+//getPosts();
+
+module.exports = {
+    getPosts, 
+    displayPosts, activateEmojiButtons, displayEmojis,
+    activateCommentButtons, postComment, CreatePostEntry
+}
