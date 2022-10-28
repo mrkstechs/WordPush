@@ -144,6 +144,16 @@ describe ('Is correctly display?', () => {
         displayPosts(testPost);
         expect(displayEmojis).toHaveBeenCalled;
     })
+    
+    test('displays all reacted emojis per post', () => {
+        let result = displayEmojis(testPost[0].reactionEmoji, document.querySelector('.emoji'));
+        // console.log(result)
+        expect(result) === (`<ul>
+        <li>😀 9</li><li>😥 2</li><li>😮 1</li>
+        </ul>`) 
+    })
+
+    
 })
 
 // describe ('Buttons activated correctly', () => {
