@@ -8,7 +8,49 @@ const { getPosts,
         displayComments,
         activateEmojiButtons, 
         CreatePostEntry,
-        CreateComment } = require("./dist/assets/js/script");
+        CreateComment, 
+        displayEmojis} = require("./dist/assets/js/script");
+
+const testPost = [{
+    "postId": 1,
+    "title": "His mother had always taught him",
+    "body": "His mother had always taught him not to ever think of himself as better than others.",
+    "date": "24/10/22",
+    "userId": 9,
+    "comments": [{
+        "commentId": 1,
+        "body": "This is some awesome thinking!",
+        "date": "24/10/22",
+        "postId": 1,
+        "user": {
+            "id": 63,
+            "username": "eburras1q"
+        }},
+        {
+        "commentId": 2,
+        "body": "What terrific math skills you’re showing!",
+        "date": "25/10/22",
+        "postId": 1,
+        "user": {
+            "id": 71,
+            "username": "omarsland1y"
+        }}],
+    "reactionEmoji": [
+        {
+        "type": "😀",
+        "count": 2
+        },
+        {
+        "type": "😥",
+        "count": 4
+        },
+        {
+        "type": "😮",
+        "count": 1
+        }
+    ],
+    "img": "../assets/testimg1.png"
+    }];
 
 describe("Functions exist", () => {
 
@@ -60,46 +102,7 @@ describe ('Object Creators', () => {
 
 
 describe ('Is correctly display?', () => {
-    const testPost = [{
-        "postId": 1,
-        "title": "His mother had always taught him",
-        "body": "His mother had always taught him not to ever think of himself as better than others.",
-        "date": "24/10/22",
-        "userId": 9,
-        "comments": [{
-            "commentId": 1,
-            "body": "This is some awesome thinking!",
-            "date": "24/10/22",
-            "postId": 1,
-            "user": {
-                "id": 63,
-                "username": "eburras1q"
-            }},
-            {
-            "commentId": 2,
-            "body": "What terrific math skills you’re showing!",
-            "date": "25/10/22",
-            "postId": 1,
-            "user": {
-                "id": 71,
-                "username": "omarsland1y"
-            }}],
-        "reactionEmoji": [
-          {
-            "type": "😀",
-            "count": 2
-          },
-          {
-            "type": "😥",
-            "count": 4
-          },
-          {
-            "type": "😮",
-            "count": 1
-          }
-        ],
-        "img": "../assets/testimg1.png"
-      }];
+    
 
     test('Post HTML is generated correctly', () => {
         const correctDisplay = `
@@ -130,4 +133,27 @@ describe ('Is correctly display?', () => {
     //     expect(displayComments(testPost.comments, "comment_0")).toEqual(correctDisplay)
     
     // })
+
+    test('Comments are added to post', () => {
+        displayPosts(testPost);
+        expect(displayComments).toHaveBeenCalled;
+    })
+
+    
+    test('Emojis are added to post', () => {
+        displayPosts(testPost);
+        expect(displayEmojis).toHaveBeenCalled;
+    })
 })
+
+// describe ('Buttons activated correctly', () => {
+//     beforeAll(() => {
+//         displayPosts(testPost);
+//     });
+    
+//     test ('Submit coment button is activated correctly', () => {
+//         const commentButton = document.querySelector('.post form input[type="submit"]')
+//         commentButton.simulate('click')
+//         expect(postComment).toHaveBeenCalled();
+//     })
+// });

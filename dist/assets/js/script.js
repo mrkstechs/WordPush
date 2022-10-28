@@ -51,7 +51,6 @@ function getPosts () {
 function displayPosts (data) {
 
     for (let i = 0; i < data.length; i++) {
-        console.log('looped')
         const post = data[i];
         const commentSectionID = `comment_${i}`;
         const commentSubmitID = `commentSubmit_${i}`;
@@ -79,6 +78,7 @@ function displayPosts (data) {
         const comments = post.comments
         const commentSection = document.querySelector(`#${commentSectionID}`)
 
+        console.log(commentSection)
         displayComments(comments, commentSection)
         displayEmojis(post.reactionEmoji, document.querySelector('.emoji'))
 

@@ -21,12 +21,6 @@
     "url": "https://github.com/mrkstechs/WordPush/issues"
   },
   "homepage": "https://github.com/mrkstechs/WordPush#readme",
-  "jest": {
-    "automock": false,
-    "setupFiles": [
-      "./setupJest.js"
-    ]
-  },
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
