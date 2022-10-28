@@ -42,7 +42,7 @@ function getPosts () {
 }
 
 
-//Displays all posts - variables will need renamed to fit actual data
+//Displays all posts
 function displayPosts (data) {
     for (let i = 0; i < data.length; i++) {
         const post = data[i];
