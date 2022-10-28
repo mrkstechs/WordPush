@@ -1,8 +1,5 @@
 const postSection = document.querySelector('#allPosts');
 const toSendPost = document.querySelector('#forumPostSection');
-// const emojiBtnArray = document.querySelectorAll('.postHeader > .emoji');
-// const postComment = document.querySelectorAll('.post');
-
 
 function CreatePostEntry(postTitle, postBody, postGif) {
     this.postId = "";
@@ -24,7 +21,6 @@ function CreateComment(commentBody, postID) {
 
 // when comment button (in postSection) is clicked, add new post
 toSendPost.addEventListener('submit',  e => {
-    e.preventDefault();
 
     const userTitle = document.getElementById('commentTitle').value;
     const userBody = document.getElementById('commentText').value;
@@ -38,18 +34,16 @@ toSendPost.addEventListener('submit',  e => {
     })
 });
 
-
 //Fetches all posts from the URL
 function getPosts () {
-   fetch('https://wordpush.herokuapp.com/')
+    fetch('https://wordpush.herokuapp.com/')
         .then(resp => resp.json())
         .then(displayPosts)
 }
 
 
-//Displays all posts - variables will need renamed to fit actual data
+//Displays all posts
 function displayPosts (data) {
-
     for (let i = 0; i < data.length; i++) {
         const post = data[i];
         const commentSectionID = `comment_${i}`;
@@ -78,11 +72,9 @@ function displayPosts (data) {
         const comments = post.comments
         const commentSection = document.querySelector(`#${commentSectionID}`)
 
-        console.log(commentSection)
         displayComments(comments, commentSection)
         displayEmojis(post.reactionEmoji, document.querySelector('.emoji'))
-
-        return markup
+        return markup;
     }
     
     activateCommentButtons()
@@ -100,9 +92,7 @@ function activateEmojiButtons(){
 
         // display list of emojis
         btn.addEventListener('click', e => {
-            // console.log('emoji display on? '+clickOnce);
             clickOnce = !clickOnce;
-            // if(prevPostClick <= 0) prevPostClick = btn.id;
             if(clickOnce) {
                 const markup = `<ul id='emoji-list'>
                     <li id="1">😀</li><li id="2">😥</li><li id="3">😮</li>
@@ -112,7 +102,6 @@ function activateEmojiButtons(){
             }
             // check if prev emoji button not same as one clicked
             else if((prevPostClick.toString() !== e.target.id) && clickOnce) {
-                console.log('not same: '+prevPostClick, e.target.id);
                 document.getElementById('emoji-list').remove();
                 clickOnce = false;
             }
@@ -120,14 +109,9 @@ function activateEmojiButtons(){
         })
         // when an emoji is selected
         function addEmojiListeners(list) {
-            console.log(list)
             emojis = list.querySelectorAll('li')
-            console.log(emojis)
             emojis.forEach(emoji => {
                 emoji.addEventListener('click', e => {
-                    console.log(emoji.id);
-                    console.log(emoji.textContent)
-                    console.log(emoji.parentElement.parentElement.parentElement.parentElement.id)
                     fetch('https://wordpush.herokuapp.com/emojis', {
                         method: 'POST',
                         body: JSON.stringify({
@@ -153,6 +137,7 @@ function displayEmojis (emojis, section) {
     }
     markup += `</ul>`
     section.insertAdjacentHTML('afterend', markup);
+    return markup;
 }
 
 function activateCommentButtons() {
@@ -188,10 +173,9 @@ function displayComments (comments, commentSection) {
 
         commentSection.insertAdjacentHTML('beforeend',markupComment)
     }
-
 }
 
-//getPosts();
+// getPosts();
 
 module.exports = {
     getPosts, 

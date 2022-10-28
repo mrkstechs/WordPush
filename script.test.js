@@ -146,11 +146,10 @@ describe ('Is correctly display?', () => {
     })
     
     test('displays all reacted emojis per post', () => {
-        let result = displayEmojis(testPost[0].reactionEmoji, document.querySelector('.emoji'));
+        const post = testPost[0]
+        // let result = displayEmojis(testPost[0].reactionEmoji, document.querySelector('.emoji'));
         // console.log(result)
-        expect(result) === (`<ul>
-        <li>😀 9</li><li>😥 2</li><li>😮 1</li>
-        </ul>`) 
+        expect(displayEmojis(post.reactionEmoji, document.querySelector('.emoji'))).toEqual(`<ul><li>😀 2</li><li>😥 4</li><li>😮 1</li></ul>`) 
     })
 
     
