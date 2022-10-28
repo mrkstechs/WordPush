@@ -1,10 +1,6 @@
 const postSection = document.querySelector('#allPosts');
 const toSendPost = document.querySelector('#forumPostSection');
 
-// const emojiBtnArray = document.querySelectorAll('.postHeader > .emoji');
-// const postComment = document.querySelectorAll('.post');
-
-
 function CreatePostEntry(postTitle, postBody, postGif) {
     this.postId = "";
     this.title = postTitle;
@@ -48,9 +44,7 @@ function getPosts () {
 
 //Displays all posts - variables will need renamed to fit actual data
 function displayPosts (data) {
-    console.log(data);
     for (let i = 0; i < data.length; i++) {
-        console.log('looped')
         const post = data[i];
         const commentSectionID = `comment_${i}`;
         const commentSubmitID = `commentSubmit_${i}`;
@@ -97,9 +91,7 @@ function activateEmojiButtons(){
 
         // display list of emojis
         btn.addEventListener('click', e => {
-            // console.log('emoji display on? '+clickOnce);
             clickOnce = !clickOnce;
-            // if(prevPostClick <= 0) prevPostClick = btn.id;
             if(clickOnce) {
                 const markup = `<ul id='emoji-list'>
                     <li id="1">😀</li><li id="2">😥</li><li id="3">😮</li>
@@ -109,7 +101,6 @@ function activateEmojiButtons(){
             }
             // check if prev emoji button not same as one clicked
             else if((prevPostClick.toString() !== e.target.id) && clickOnce) {
-                console.log('not same: '+prevPostClick, e.target.id);
                 document.getElementById('emoji-list').remove();
                 clickOnce = false;
             }
@@ -117,14 +108,9 @@ function activateEmojiButtons(){
         })
         // when an emoji is selected
         function addEmojiListeners(list) {
-            console.log(list)
             emojis = list.querySelectorAll('li')
-            console.log(emojis)
             emojis.forEach(emoji => {
                 emoji.addEventListener('click', e => {
-                    console.log(emoji.id);
-                    console.log(emoji.textContent)
-                    console.log(emoji.parentElement.parentElement.parentElement.parentElement.id)
                     fetch('https://wordpush.herokuapp.com/emojis', {
                         method: 'POST',
                         body: JSON.stringify({
