@@ -1,10 +1,11 @@
 const pageMain = document.querySelector('body main')
 const loginButton = document.querySelector('#loginButton')
 const registerButton = document.querySelector('#registerButton')
-
+const closeButton = document.querySelector('#hideForms')
 
 loginButton.addEventListener('click', showLogin)
 registerButton.addEventListener('click', showRegister)
+closeButton.addEventListener('click', clearForms)
 
 function showLogin () {
     clearForms();
