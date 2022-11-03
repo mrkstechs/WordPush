@@ -18,6 +18,8 @@ const userData = require('./db/users.json');
 
 const { uniqueId, getDate, updateJSON } = require('./functions');
 
+app.use('/api', apiRouter)
+
 //Users should be able to view other peoples' entries. (2)
 //working so far
 app.get('/', (req, res)=> {

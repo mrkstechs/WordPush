@@ -1,14 +1,40 @@
 const path = require('path')
 const express =  require('express');
+const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
 
-const { readData, updatePostComments } = require('../functions');
+const { readData, updatePostComments, updateNewUsersList } = require('../functions');
 
 const postsDataPath = path.join(__dirname, '../db/posts.json');
 const postsData = require('../db/posts.json');
 const commentsData = require('../db/comments.json');
 const userData = require('../db/users.json');
+const newUserData = require('../db/newUsers.json');
 
 const router = express.Router()
+
+
+router.post('/register', async (req, res) => {
+    try {
+        const salt = await bcrypt.genSalt(12)
+        const hashed = await bcrypt.hash(req.body.password, salt)
+        const payload = {...req.body, password: hashed}
+        updateNewUsersList('db/newUsers.json', payload, res)
+
+        res.status(201).json({msg: 'user created'})
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({error})
+    }
+})
+
+router.post('/login', async (req, res) => {
+    try {
+        
+    } catch (error) {
+        
+    }
+})
 
 router.get('/posts', (req, res) => {
     res.send(postsData);
