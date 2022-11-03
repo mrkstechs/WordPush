@@ -48,13 +48,14 @@ function clearForms () {
 
 async function requestLogin(e){
     e.preventDefault();
+    console.log(new FormData(e.target))
     try {
         const options = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(Object.fromEntries(new FormData(e.target)))
         }
-        const r = await fetch(`http://localhost:3000/login`, options)
+        const r = await fetch(`http://localhost:3000/api/login`, options)
         const data = await r.json()
         if (data.err){ throw Error(data.err); }
         login(data);
@@ -71,7 +72,7 @@ async function requestRegistration(e) {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(Object.fromEntries(new FormData(e.target)))
         }
-        const r = await fetch(`http://localhost:3000/register`, options)
+        const r = await fetch(`http://localhost:3000/api/register`, options)
         const data = await r.json()
         if (data.err){ throw Error(data.err) }
         requestLogin(e);
