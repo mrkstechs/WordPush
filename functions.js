@@ -53,4 +53,9 @@ const updateJSON = (filePath, data) => {
   fs.writeFile(filePath, data, err => err ?? console.log(err))
 }
 
-module.exports= { uniqueId, getDate, readData, updatePostComments, updateJSON }
+const updateNewUsersList = (filePath, data, res) => {
+  let newUser = JSON.stringify(data, null, 2)
+  fs.writeFile(filePath, newUser, err => err ?? res.status(500).json({err}))
+}
+
+module.exports= { uniqueId, getDate, readData, updatePostComments, updateJSON, updateNewUsersList }
