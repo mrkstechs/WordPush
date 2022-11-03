@@ -1,6 +1,49 @@
-const loginForm = document.querySelector('#loginSection form')
+const pageMain = document.querySelector('body main')
+const loginButton = document.querySelector('#loginButton')
+const registerButton = document.querySelector('#registerButton')
 
-loginForm.addEventListener('submit', requestLogin)
+
+loginButton.addEventListener('click', showLogin)
+registerButton.addEventListener('click', showRegister)
+
+function showLogin () {
+    clearForms();
+    markup = `<section id="loginSection">
+                    <form action="">
+                    <input type="text" id="username" placeholder="username" required>
+                    <input type="text" id="password" placeholder="password" required>
+                    <input type="submit" value="login">
+                </form>
+            </section>`
+    pageMain.insertAdjacentHTML('afterbegin', markup);
+    
+    const loginForm = document.querySelector('#loginSection form')
+    loginForm.addEventListener('submit', requestLogin)
+}
+
+function showRegister () {
+    clearForms();
+    markup = `<section id="registerSection">
+                    <form action="">
+                    <input type="text" id="username" placeholder="username" required>
+                    <input type="text" id="email" placeholder="email" required>
+                    <input type="text" id="password" placeholder="password" required>
+                    <input type="submit" value="register">
+                </form>
+            </section>`
+    pageMain.insertAdjacentHTML('afterbegin', markup);
+    
+    const registerForm = document.querySelector('#registerSection form')
+    registerForm.addEventListener('submit', requestRegistration)
+}
+
+
+function clearForms () {
+    if (pageMain.firstElementChild.id == "loginSection" || pageMain.firstElementChild.id == "registerSection") {
+        pageMain.firstElementChild.remove()
+    }
+};
+
 
 async function requestLogin(e){
     e.preventDefault();
