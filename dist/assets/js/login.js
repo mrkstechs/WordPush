@@ -11,8 +11,8 @@ function showLogin () {
     clearForms();
     markup = `<section id="loginSection">
                     <form action="">
-                    <input type="text" id="username" placeholder="username" required>
-                    <input type="text" id="password" placeholder="password" required>
+                    <input type="text" id="username" name="username" placeholder="username" required>
+                    <input type="text" id="password" name="password" placeholder="password" required>
                     <input type="submit" value="login">
                 </form>
             </section>`
@@ -26,9 +26,9 @@ function showRegister () {
     clearForms();
     markup = `<section id="registerSection">
                     <form action="">
-                    <input type="text" id="username" placeholder="username" required>
-                    <input type="text" id="email" placeholder="email" required>
-                    <input type="text" id="password" placeholder="password" required>
+                    <input type="text" id="username" name="username" placeholder="username" required>
+                    <input type="text" id="email" name="email" placeholder="email" required>
+                    <input type="text" id="password" name="password" placeholder="password" required>
                     <input type="submit" value="register">
                 </form>
             </section>`
